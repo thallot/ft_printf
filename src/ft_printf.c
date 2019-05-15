@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string.c                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/08 15:31:54 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/09 12:09:24 by thallot          ###   ########.fr       */
+/*   Created: 2019/05/15 10:04:22 by thallot           #+#    #+#             */
+/*   Updated: 2019/05/15 10:04:39 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void	ft_print_string(va_list list, t_arg *arg)
+int		ft_printf(char *format, ...)
 {
-	char *str;
+	va_list list;
+	int		ret;
+	char 	*pf_str;
 
-	(void)arg;
-	str = va_arg(list, char *);
-	ft_putstr(str);
-}
-
-void	ft_print_char(va_list list, t_arg *arg)
-{
-	char c;
-
-	(void)arg;
-	c = va_arg(list, int);
-	ft_putchar(c);
+	ret = 0;
+	va_start(list, format);
+	pf_str = ft_print(format, list);
+	va_end(list);
+	ret = ft_strlen(pf_str);
+	ft_putstr(pf_str);
+	return (ret);
 }
