@@ -2,7 +2,7 @@ C = gcc
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror 
+FLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft
 
@@ -14,16 +14,18 @@ HEADER = include
 
 SOURCES = ft_printf.c \
 		  print_int.c \
-		  arg.c \
-		  flag.c \
-		  get_arg.c \
-		  string.c \
+		  print_string.c \
+			arg.c \
+			flag.c \
+			get_arg.c \
+		  strjoin.c \
+		  itoa_base.c \
+		  ft_pow.c \
 		  integer.c \
-		  functions.c \
-		  percent.c \
 		  convert.c \
 		  caster.c \
-		  free.c
+		  free.c \
+		  functions.c
 
 SRCS = $(addprefix $(SRC)/,$(SOURCES))
 
@@ -61,4 +63,3 @@ fclean: clean
 	@make fclean -C $(LIBFT)
 
 re: fclean all
-

@@ -6,7 +6,7 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:27:42 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/15 10:10:28 by thallot          ###   ########.fr       */
+/*   Updated: 2019/05/16 13:59:09 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ t_arg	*get_arg(char *str, int *len)
 	arg = get_precision(str, arg);
 	arg = get_type(str, arg, len);
 	arg->len = *len;
+	if (arg->zero == 1 && arg->minus == 1)
+		arg->zero = 0;
+	if ((arg->zero == 1 && arg->flag_preci == 1)
+		&& (arg->type == TYPE_D || arg->type == TYPE_U
+		|| arg->type == TYPE_O || arg->type == TYPE_X || arg->type == TYPE_XX))
+		arg->zero = 0;
+	if (arg->space == 1 && arg->plus == 1)
+		arg->space = 0;
+	if (arg->flag_preci == 0)
+		arg->precision = 0;
 	return (arg);
 }
 
@@ -31,7 +41,7 @@ t_arg	*get_width(char *str, t_arg *arg)
 	int i;
 
 	i = 1;
-	while ((ft_isdigit(str[i]) != 1 && is_valid_type(str[i]) == 0) 
+	while ((ft_isdigit(str[i]) != 1 && is_valid_type(str[i]) == 0 && str[i])
 			|| (str[i] == '0'))
 	{
 		if (str[i] == '.')
@@ -48,7 +58,7 @@ t_arg	*get_width(char *str, t_arg *arg)
 
 t_arg	*get_flag(char *str, t_arg *arg, int *i)
 {
-	while (is_valid_type(str[*i]) == 0 && str[*i] != '\0')
+	while (is_valid_type(str[*i]) == 0 && str[*i])
 	{
 		str[*i] == '-' ? arg->minus = 1 : arg->minus;
 		str[*i] == '+' ? arg->plus = 1 : arg->plus;
@@ -76,6 +86,7 @@ t_arg	*get_flag(char *str, t_arg *arg, int *i)
 
 t_arg	*get_type(char *str, t_arg *arg, int *i)
 {
+	arg->type = -1;
 	str[*i] == 'd' ? arg->type = TYPE_D : arg->type;
 	str[*i] == 'i' ? arg->type = TYPE_D : arg->type;
 	str[*i] == 'o' ? arg->type = TYPE_O : arg->type;
@@ -95,9 +106,9 @@ t_arg	*get_precision(char *str, t_arg *arg)
 	int i;
 
 	i = 1;
-	while (is_valid_type(str[i]) == 0 && str[i] != '\0')
+	while (is_valid_type(str[i]) == 0 && str[i])
 	{
-		if(str[i] == '.')
+		if (str[i] == '.')
 		{
 			i++;
 			while (ft_isdigit(str[i]))

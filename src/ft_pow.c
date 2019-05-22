@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/15 10:04:22 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/17 13:48:02 by thallot          ###   ########.fr       */
+/*   Created: 2019/05/16 13:58:54 by thallot           #+#    #+#             */
+/*   Updated: 2019/05/17 10:09:35 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		ft_printf(char *format, ...)
+unsigned int			ft_pow(intmax_t nb, int pow)
 {
-	va_list list;
-	int		ret;
+	if (pow == 0)
+		return (1);
+	else
+		return (nb * ft_pow(nb, pow - 1));
+}
 
-	ret = 0;
-	va_start(list, format);
-	ret = ft_print(format, list);
-	va_end(list);
-	return (ret);
+unsigned long int		ft_powl(intmax_t nb, int pow)
+{
+	if (pow == 0)
+		return (1);
+	else
+		return (nb * ft_pow(nb, pow - 1));
+}
+
+unsigned long long int	ft_powll(unsigned long long int nb, int pow)
+{
+	if (pow == 0)
+		return (1);
+	else
+		return (nb * ft_pow(nb, pow - 1));
 }

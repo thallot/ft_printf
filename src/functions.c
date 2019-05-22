@@ -6,112 +6,92 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 09:37:16 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/15 15:22:28 by thallot          ###   ########.fr       */
+/*   Updated: 2019/05/21 11:27:25 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdlib.h>
 
-intmax_t	ft_pow(intmax_t nb, int pow)
+int		get_len_int(intmax_t nb)
 {
-	if (pow == 0)
+	int len;
+	intmax_t n;
+
+	len = 1;
+	if (nb == LLONG_MIN)
+		return (20);
+	if (nb == LLONG_MAX)
+		return (19);
+	if (nb == 0)
 		return (1);
+	if (nb < 0)
+	{
+		len++;
+		n = -nb;
+	}
 	else
-		return (nb * ft_pow(nb, pow - 1));
+		n = nb;
+	while (n > 10)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
 }
 
-char	*ft_itoa_base_x(intmax_t value, int base)
+void	ft_putnbr_max(long long int nb)
 {
-	int		i;
-	char	*nbr;
-	int		neg;
+	uintmax_t z;
 
-	i = 1;
-	neg = 0;
-	if (value < 0)
+	if (nb == LLONG_MIN)
 	{
-		neg = 1;
-		value *= -1;
+		ft_putstr("9223372036854775808");
+		return ;
 	}
-	while (ft_pow(base, i) - 1 < value)
-		i++;
-	nbr = (char*)ft_memalloc(sizeof(nbr) * i);
-	nbr[i + neg] = '\0';
-	while (i-- > 0)
+	if (nb == LLONG_MAX)
 	{
-		nbr[i + neg] = (value % base) + (value % base > 9 ? 'a' - 10 : '0');
-		value = value / base;
+		ft_putstr("9223372036854775807");
+		return ;
 	}
-	if (neg)
-		nbr[0] = '-';
-	return (nbr);
+	if (nb < 0)
+		z = -nb;
+	else
+		z = nb;
+	if (z >= 10)
+		ft_putnbr(z / 10);
+	ft_putchar((z % 10) + 48);
 }
 
-char	*ft_itoa_base_xx(intmax_t value, int base)
+void		ft_put_all(char c, int *n, int *i)
 {
-	int		i;
-	char	*nbr;
-	int		neg;
-
-	i = 1;
-	neg = 0;
-	if (value < 0)
+	while ((*n)-- > 0)
 	{
-		neg = 1;
-		value *= -1;
+		ft_putchar(c);
+		(*i)++;
 	}
-	while (ft_pow(base, i) - 1 < value)
-		i++;
-	nbr = (char*)ft_memalloc(sizeof(nbr) * i);
-	nbr[i + neg] = '\0';
-	while (i-- > 0)
-	{
-		nbr[i + neg] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
-		value = value / base;
-	}
-	if (neg)
-		nbr[0] = '-';
-	return (nbr);
 }
 
-char	*ft_cjoin(char c, char *str)
+int		ft_put(char c, int i)
 {
-	char	*s;
-	int		i;
-
-	if (!str || !c)
-		return (NULL);
-	i = 1;
-	if (!(s = ft_memalloc(sizeof(char *) * ft_strlen(str) + 1)))
-		return (NULL);
-	s[0] = c;
-	while (str[i-1] != '\0')
-	{
-		s[i] = str[i - 1];
-		i++;
-	}
-	s[i] = '\0';
-	return (s);
+	ft_putchar(c);
+	(i)++;
+	return (i);
 }
 
-char	*ft_joinc(char *str, char c)
+int		set_offset(int *len, t_arg *arg, intmax_t num, int *p)
 {
-	char	*s;
-	int		i;
+	int n;
 
-
-	if (!str || !c)
-		return (NULL);
-	if (!(s = ft_memalloc(sizeof(char *) * ft_strlen(str) + 1)))
-		return (NULL);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		s[i] = str[i];
-		i++;
-	}
-	s[i] = c;
-	s[i + 1] = '\0';
-	return (s);
+	*len -= (num < 0) ? 1 : 0;
+	*p = (arg->precision - *len > 0) ? arg->precision - *len : 0;
+	*len = (num == 0 && arg->precision == 0) ? 0 : *len;
+	n = arg->width - *len - *p;
+	n -= (arg->plus || arg->space ||num < 0) ? 1 : 0;
+	if (arg->type == TYPE_O && arg->sharp == 1)
+		n--;
+	if (arg->type == TYPE_X && arg->sharp == 1)
+		n = n - 2;
+	if (arg->type == TYPE_XX && arg->sharp == 1)
+		n = n - 2;
+	return (n);
 }

@@ -1,5 +1,8 @@
 [OK] Width ne foncitonne pas qvec les flags
 [OK] Width ne reconnais pas le flag zero
-Gerer les conversion
-Gerer les floats
-Gerer les flags
+[OK] Gerer les conversion
+Gerer les floats %f
+Gerer les pointeur %p
+[OK] Gerer les flags
+[OK] Regler les fuites memoires sur les char * avec precision
+Regler les variable sans type 
