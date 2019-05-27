@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-unsigned int			ft_pow(intmax_t nb, int pow)
+unsigned int				ft_pow(intmax_t nb, int pow)
 {
 	if (pow == 0)
 		return (1);
@@ -28,7 +28,7 @@ unsigned long int		ft_powl(intmax_t nb, int pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-unsigned long long int	ft_powll(unsigned long long int nb, int pow)
+uintmax_t						ft_powll(unsigned long long int nb, int pow)
 {
 	if (pow == 0)
 		return (1);

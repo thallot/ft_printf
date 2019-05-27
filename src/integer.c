@@ -39,8 +39,7 @@ void	set_flag_int(t_arg *arg)
 	else
 		i--;
 	ft_put_all(' ', &max, &i);
-	len == 0 ? len = 1 : len;
-	arg->len = i + len;
+	arg->len = len == 0 ? i + 1 : i + len;
 }
 
 void	set_flag_uint(t_arg *arg)
@@ -95,8 +94,7 @@ void	set_flag_oct(t_arg *arg)
 	else
 		i--;
 	ft_put_all(' ', &max, &i);
-	len == 0 ? len = 1 : len;
-	arg->len = i + len;
+	arg->len = len == 0 ? i + 1 : i + len;
 }
 
 void	set_flag_hex(t_arg *arg)

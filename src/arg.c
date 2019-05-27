@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-int		ft_print(char *str, va_list list)
+int		ft_print(const char *str, va_list list)
 {
 	int		i;
 	int		count;
@@ -69,9 +69,10 @@ int		ft_print_value(va_list list, t_arg *arg)
 		ret = ft_print_hex(list, arg);
 	else if (arg->type == TYPE_XX)
 		ret = ft_print_hexx(list, arg);
+	else if (arg->type == TYPE_P)
+		ret = ft_print_pointer(list, arg);
 	else if (arg->type == TYPE_F)
-	{
-	}
+		ret = ft_print_float(list, arg);
 	else if (arg->type == TYPE_PERCENT)
 		ret = ft_print_percent(arg);
 	else if (arg->type == -1)

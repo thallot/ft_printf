@@ -2,7 +2,8 @@
 [OK] Width ne reconnais pas le flag zero
 [OK] Gerer les conversion
 Gerer les floats %f
-Gerer les pointeur %p
+Sauvegarder le signe du float dans la struct
+[50%] Gerer les pointeur %p
 [OK] Gerer les flags
 [OK] Regler les fuites memoires sur les char * avec precision
-Regler les variable sans type 
+[90%] Regler les variable sans type

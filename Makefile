@@ -15,6 +15,8 @@ HEADER = include
 SOURCES = ft_printf.c \
 		  print_int.c \
 		  print_string.c \
+			print_pointer.c \
+			print_float.c \
 			arg.c \
 			flag.c \
 			get_arg.c \

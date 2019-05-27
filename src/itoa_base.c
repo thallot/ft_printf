@@ -12,6 +12,26 @@
 
 #include "../includes/ft_printf.h"
 
+char	*ft_itoa_base(int nb, int base)
+{
+	int				i;
+	int				count;
+	char			*nbr;
+
+	i = 1;
+	while ((int)ft_pow(base, i) - 1 < nb)
+		i++;
+	count = i;
+	nbr = (char*)ft_memalloc(sizeof(nbr) * i);
+	nbr[i] = '\0';
+	while (i-- > 0)
+	{
+		nbr[i] = (nb % base) + (nb % base > 9 ? 'a' - 10 : '0');
+		nb = nb / base;
+	}
+	return (nbr);
+}
+
 int		ft_itoa_base_uns(int base, t_arg *arg)
 {
 	unsigned int	value;
@@ -21,7 +41,7 @@ int		ft_itoa_base_uns(int base, t_arg *arg)
 	char			letters;
 
 	value = arg->nbr;
-	letters = arg->type == TYPE_X ? 'a' : 'A';
+	letters = arg->type == TYPE_XX ? 'A' : 'a';
 	i = 1;
 	while (ft_pow(base, i) - 1 < value)
 		i++;
@@ -47,7 +67,7 @@ int		ft_itoa_base_unsl(int base, t_arg *arg)
 	char							letters;
 
 	value = arg->nbr;
-	letters = arg->type == TYPE_X ? 'a' : 'A';
+	letters = arg->type == TYPE_XX ? 'A' : 'a';
 	i = 1;
 	while (ft_powll(base, i) - 1 < value)
 		i++;
@@ -73,7 +93,7 @@ int		ft_itoa_base_unsll(int base, t_arg *arg)
 	char					letters;
 
 	value = arg->nbr;
-	letters = arg->type == TYPE_X ? 'a' : 'A';
+	letters = arg->type == TYPE_XX ? 'A' : 'a';
 	count = 16;
 	i = 16;
 	nbr = (char*)ft_memalloc(sizeof(nbr) * 16);

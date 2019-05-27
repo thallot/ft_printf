@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-t_arg	*get_arg(char *str, int *len)
+t_arg	*get_arg(const char *str, int *len)
 {
 	t_arg	*arg;
 
@@ -36,7 +36,7 @@ t_arg	*get_arg(char *str, int *len)
 	return (arg);
 }
 
-t_arg	*get_width(char *str, t_arg *arg)
+t_arg	*get_width(const char *str, t_arg *arg)
 {
 	int i;
 
@@ -56,7 +56,7 @@ t_arg	*get_width(char *str, t_arg *arg)
 	return (arg);
 }
 
-t_arg	*get_flag(char *str, t_arg *arg, int *i)
+t_arg	*get_flag(const char *str, t_arg *arg, int *i)
 {
 	while (is_valid_type(str[*i]) == 0 && str[*i])
 	{
@@ -78,13 +78,13 @@ t_arg	*get_flag(char *str, t_arg *arg, int *i)
 			str[*i] == 'l' ? arg->conv = MODIFIER_L : arg->conv;
 		}
 		if (is_valid(str[*i]) == 0)
-			arg->error = 1;
+			break ;
 		*i = *i + 1;
 	}
 	return (arg);
 }
 
-t_arg	*get_type(char *str, t_arg *arg, int *i)
+t_arg	*get_type(const char *str, t_arg *arg, int *i)
 {
 	arg->type = -1;
 	str[*i] == 'd' ? arg->type = TYPE_D : arg->type;
@@ -96,12 +96,13 @@ t_arg	*get_type(char *str, t_arg *arg, int *i)
 	str[*i] == 'c' ? arg->type = TYPE_C : arg->type;
 	str[*i] == 's' ? arg->type = TYPE_S : arg->type;
 	str[*i] == 'p' ? arg->type = TYPE_P : arg->type;
+	str[*i] == 'f' ? arg->type = TYPE_F : arg->type;
 	str[*i] == '%' ? arg->type = TYPE_PERCENT : arg->type;
 	*i = *i + 1;
 	return (arg);
 }
 
-t_arg	*get_precision(char *str, t_arg *arg)
+t_arg	*get_precision(const char *str, t_arg *arg)
 {
 	int i;
 
