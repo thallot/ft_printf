@@ -23,8 +23,8 @@ t_arg	*get_arg(const char *str, int *len)
 	arg = get_precision(str, arg);
 	arg = get_type(str, arg, len);
 	arg->len = *len;
-	if (arg->zero == 1 && arg->minus == 1)
-		arg->zero = 0;
+	/*if (arg->zero == 1 && arg->minus == 1)
+		arg->zero = 0;*/
 	if ((arg->zero == 1 && arg->flag_preci == 1)
 		&& (arg->type == TYPE_D || arg->type == TYPE_U
 		|| arg->type == TYPE_O || arg->type == TYPE_X || arg->type == TYPE_XX))

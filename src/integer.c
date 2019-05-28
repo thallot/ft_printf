@@ -79,7 +79,7 @@ void	set_flag_oct(t_arg *arg)
 	max = set_offset(&len, arg, arg->nbr, &p);
 	if (!arg->minus && (arg->precision || !arg->zero))
 		ft_put_all(' ', &max, &i);
-	if (arg->sharp == 1)
+	if (arg->sharp == 1 && ((arg->nbr == 0 && arg->flag_preci == 1) || arg->nbr > 0))
 		i = ft_put('0', i);
 	else if (arg->plus)
 		i = ft_put('+', i);

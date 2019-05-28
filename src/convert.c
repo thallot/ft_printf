@@ -20,9 +20,9 @@ intmax_t	convert_arg(t_arg *arg, va_list list)
 			|| arg->type == TYPE_XX)
 	{
 		if (arg->conv == MODIFIER_L)
-			nb = (unsigned long int)va_arg(list, unsigned long int);
+			nb = (unsigned long int)va_arg(list, uintmax_t);
 		else if (arg->conv == MODIFIER_LL)
-			nb = (uintmax_t)va_arg(list, uint64_t);
+			nb = (uintmax_t)va_arg(list, uintmax_t);
 		else if (arg->conv == MODIFIER_HH)
 			nb = (unsigned char)va_arg(list, int);
 		else if (arg->conv == MODIFIER_H)

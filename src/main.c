@@ -30,6 +30,10 @@ int		main(void)
 
 
 		nb = -12547.58;
+		id = printf("{%0-3d}\n", 0);
+		printf("ret : %d\n", id);
+		id = ft_printf("{%0-3d}\n", 0);
+		printf("ret : %d\n", id);
 		printf("\n\n\n\ntest : %f|\n", nb);
 
 		ft_printf("MON F EST FAIT:%.50f|\n", nb);
