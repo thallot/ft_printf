@@ -12,33 +12,24 @@
 
 #include "../includes/ft_printf.h"
 
-int		ft_print(const char *str, va_list list)
+int		ft_print(const char *str, va_list list, int i, int count)
 {
-	int		i;
-	int		count;
 	int		len;
 	t_arg	*arg;
 
-	i = 0;
-	count = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
-			len = 1;
 			arg = get_arg(&str[i], &len);
 			if (arg->type != -1)
 			{
-				arg->len = 0;
 				count += ft_print_value(list, arg);
 				str = str + len + i;
 				i = 0;
 			}
 			else
 				i = i + arg->len - 1;
-			/*printf("--Type : %d, W : %lld Sh/z/p/m/s : %d/%d/%d/%d/%d len : %d (%d) Precision : %lld conv %d --\n",
-			arg->type, arg->width, arg->sharp, arg->zero, arg->plus, arg->minus, arg->space,
-			len, arg->flag_preci,  arg->precision, arg->conv);*/
 			free_arg(arg);
 		}
 		else
@@ -53,30 +44,22 @@ int		ft_print(const char *str, va_list list)
 int		ft_print_value(va_list list, t_arg *arg)
 {
 	int				ret;
+	int				(*f[11])(va_list, t_arg *);
 
-	ret = 0;
-	if (arg->type == TYPE_D)
-		ret = ft_print_int(list, arg);
-	else if (arg->type == TYPE_S)
-		ret = ft_print_string(list, arg);
-	else if (arg->type == TYPE_C)
-		ret = ft_print_char(list, arg);
-	else if (arg->type == TYPE_O)
-		ret = ft_print_oct(list, arg);
-	else if (arg->type == TYPE_U)
-		ret = ft_print_unsigned(list, arg);
-	else if (arg->type == TYPE_X)
-		ret = ft_print_hex(list, arg);
-	else if (arg->type == TYPE_XX)
-		ret = ft_print_hexx(list, arg);
-	else if (arg->type == TYPE_P)
-		ret = ft_print_pointer(list, arg);
-	else if (arg->type == TYPE_F)
-		ret = ft_print_float(list, arg);
-	else if (arg->type == TYPE_PERCENT)
-		ret = ft_print_percent(arg);
-	else if (arg->type == -1)
+	f[1] = &ft_print_float;
+	f[2] = &ft_print_oct;
+	f[3] = &ft_print_unsigned;
+	f[4] = &ft_print_hexx;
+	f[5] = &ft_print_hex;
+	f[6] = &ft_print_pointer;
+	f[7] = &ft_print_int;
+	f[8] = &ft_print_char;
+	f[9] = &ft_print_string;
+	f[10] = &ft_print_percent;
+	arg->len = 0;
+	if (arg->type == -1)
 		return (0);
+	ret = f[arg->type](list, arg);
 	return (ret);
 }
 

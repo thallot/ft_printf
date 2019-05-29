@@ -12,36 +12,48 @@
 
 #include "../includes/ft_printf.h"
 
+intmax_t	conver_arg_s(t_arg *arg, va_list list)
+{
+	intmax_t nb;
+
+	if (arg->conv == MODIFIER_L)
+		nb = (long int)va_arg(list, long int);
+	else if (arg->conv == MODIFIER_LL)
+		nb = (long long int)va_arg(list, long long int);
+	else if (arg->conv == MODIFIER_HH)
+		nb = (char)va_arg(list, int);
+	else if (arg->conv == MODIFIER_H)
+		nb = (short int)va_arg(list, int);
+	else
+		nb = va_arg(list, int);
+	return (nb);
+}
+
+intmax_t	convert_arg_u(t_arg *arg, va_list list)
+{
+	intmax_t	nb;
+
+	if (arg->conv == MODIFIER_L)
+		nb = (unsigned long int)va_arg(list, uintmax_t);
+	else if (arg->conv == MODIFIER_LL)
+		nb = (uintmax_t)va_arg(list, uintmax_t);
+	else if (arg->conv == MODIFIER_HH)
+		nb = (unsigned char)va_arg(list, int);
+	else if (arg->conv == MODIFIER_H)
+		nb = (unsigned short int)va_arg(list, int);
+	else
+		nb = va_arg(list, unsigned int);
+	return (nb);
+}
+
 intmax_t	convert_arg(t_arg *arg, va_list list)
 {
 	intmax_t	nb;
 
 	if (arg->type == TYPE_O || arg->type == TYPE_U || arg->type == TYPE_X
 			|| arg->type == TYPE_XX)
-	{
-		if (arg->conv == MODIFIER_L)
-			nb = (unsigned long int)va_arg(list, uintmax_t);
-		else if (arg->conv == MODIFIER_LL)
-			nb = (uintmax_t)va_arg(list, uintmax_t);
-		else if (arg->conv == MODIFIER_HH)
-			nb = (unsigned char)va_arg(list, int);
-		else if (arg->conv == MODIFIER_H)
-			nb = (unsigned short int)va_arg(list, int);
-		else
-			nb = va_arg(list, unsigned int);
-	}
+		nb = convert_arg_u(arg, list);
 	else
-	{
-		if (arg->conv == MODIFIER_L)
-			nb = (long int)va_arg(list, long int);
-		else if (arg->conv == MODIFIER_LL)
-			nb = (long long int)va_arg(list, long long int);
-		else if (arg->conv == MODIFIER_HH)
-			nb = (char)va_arg(list, int);
-		else if (arg->conv == MODIFIER_H)
-			nb = (short int)va_arg(list, int);
-		else
-			nb = va_arg(list, int);
-	}
+		nb = conver_arg_s(arg, list);
 	return (nb);
 }

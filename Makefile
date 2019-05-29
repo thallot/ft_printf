@@ -27,7 +27,8 @@ SOURCES = ft_printf.c \
 		  convert.c \
 		  caster.c \
 		  free.c \
-		  functions.c
+		  functions.c \
+			putter.c
 
 SRCS = $(addprefix $(SRC)/,$(SOURCES))
 

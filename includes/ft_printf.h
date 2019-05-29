@@ -78,11 +78,13 @@ t_arg								*get_flag(const char *str, t_arg *arg, int *i);
 ********************************* Convert.c ***********************************
 */
 intmax_t						convert_arg(t_arg *arg, va_list list);
+intmax_t						conver_arg_s(t_arg *arg, va_list list);
+intmax_t						conver_arg_u(t_arg *arg, va_list list);
 /*
 ********************************* Arg.c ***************************************
 */
 int									ft_printf(const char *format, ...);
-int									ft_print(const char *str, va_list list);
+int									ft_print(const char *str, va_list list, int i, int count);
 int									ft_print_value(va_list list, t_arg *arg);
 int									ft_get_nb_arg(char *str);
 /*
@@ -90,7 +92,8 @@ int									ft_get_nb_arg(char *str);
 */
 int									ft_print_string(va_list list, t_arg *arg);
 int									ft_print_char(va_list list, t_arg *arg);
-int									ft_print_percent(t_arg *arg);
+int									ft_print_percent(va_list list, t_arg *arg);
+int									set_flag_str(t_arg *arg, int len);
 /*
 ********************************* Integer.c ***********************************
 */
@@ -125,17 +128,17 @@ void								free_arg(t_arg *arg);
 /*
 ********************************* Integer.c ***********************************
 */
-void								set_flag_int(t_arg *arg);
-void								set_flag_uint(t_arg *arg);
-void								set_flag_oct(t_arg *arg);
-void								set_flag_hex(t_arg *arg);
-void								set_flag_hexx(t_arg *arg);
+void								set_flag_int(t_arg *arg, int len);
+void								set_flag_uint(t_arg *arg, int len);
+void								set_flag_oct(t_arg *arg, int len);
+void								set_flag_hex(t_arg *arg, int len);
+void								set_flag_hexx(t_arg *arg, int len);
 /*
 ********************************* Caster.c ************************************
 */
 t_arg								*caster_int(t_arg *arg);
-char								*ft_itoa_base_x(unsigned int value, int base);
-char								*ft_itoa_base_xx(unsigned int value, int base);
+t_arg								*caster_uint(t_arg *arg);
+t_arg								*caster_sint(t_arg *arg);
 /*
 ********************************* Caster.c ************************************
 */
@@ -146,10 +149,16 @@ intmax_t							ft_power_long(intmax_t nb, long pow);
 */
 void								ft_putnbr_max(long long int nb);
 int									get_len_int(intmax_t nb);
+/*
+******************************** Putter.c **************************************
+*/
+int									set_offset(int *len, t_arg *arg, intmax_t num, int *p);
 int									ft_put(char c, int i);
 void								ft_put_all(char c, int *n, int *i);
-int									set_offset(int *len, t_arg *arg, intmax_t num, int *p);
-
+int									ft_putter(char *c, int i);
+/*
+******************************** Print_Pointer.c *******************************
+*/
 int									ft_print_pointer(va_list list, t_arg *arg);
 void								set_flag_pointer(t_arg *arg);
 

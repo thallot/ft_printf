@@ -16,30 +16,38 @@ t_arg	*caster_int(t_arg *arg)
 {
 	if (arg->type == TYPE_O || arg->type == TYPE_U || arg->type == TYPE_X
 		|| arg->type == TYPE_XX)
-	{
-		if (arg->conv == MODIFIER_H)
-			arg->nbr = (unsigned short)arg->nbr;
-		else if (arg->conv == MODIFIER_HH)
-			arg->nbr = (unsigned char)arg->nbr;
-		else if (arg->conv == MODIFIER_L)
-			arg->nbr = (unsigned long int)arg->nbr;
-		else if (arg->conv == MODIFIER_LL)
-			arg->nbr = (uintmax_t)arg->nbr;
-		else
-			arg->nbr = (unsigned int)arg->nbr;
-	}
+		arg = caster_uint(arg);
 	else
-	{
-		if (arg->conv == MODIFIER_LL)
-			arg->nbr = (long long int)arg->nbr;
-		else if (arg->conv == MODIFIER_L)
-			arg->nbr = (long int)arg->nbr;
-		else if (arg->conv == MODIFIER_H)
-			arg->nbr = (short int )arg->nbr;
-		else if (arg->conv == MODIFIER_HH)
-			arg->nbr = (char)arg->nbr;
-		else
-			arg->nbr = (int)arg->nbr;
-	}
+		arg = caster_sint(arg);
+	return (arg);
+}
+
+t_arg	*caster_uint(t_arg *arg)
+{
+	if (arg->conv == MODIFIER_H)
+		arg->nbr = (unsigned short)arg->nbr;
+	else if (arg->conv == MODIFIER_HH)
+		arg->nbr = (unsigned char)arg->nbr;
+	else if (arg->conv == MODIFIER_L)
+		arg->nbr = (unsigned long int)arg->nbr;
+	else if (arg->conv == MODIFIER_LL)
+		arg->nbr = (uintmax_t)arg->nbr;
+	else
+		arg->nbr = (unsigned int)arg->nbr;
+	return (arg);
+}
+
+t_arg	*caster_sint(t_arg *arg)
+{
+	if (arg->conv == MODIFIER_LL)
+		arg->nbr = (long long int)arg->nbr;
+	else if (arg->conv == MODIFIER_L)
+		arg->nbr = (long int)arg->nbr;
+	else if (arg->conv == MODIFIER_H)
+		arg->nbr = (short int)arg->nbr;
+	else if (arg->conv == MODIFIER_HH)
+		arg->nbr = (char)arg->nbr;
+	else
+		arg->nbr = (int)arg->nbr;
 	return (arg);
 }

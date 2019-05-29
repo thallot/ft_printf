@@ -12,26 +12,14 @@
 
 #include "../includes/ft_printf.h"
 
-int		ft_print_string(va_list list, t_arg *arg)
+int		set_flag_str(t_arg *arg, int len)
 {
-	char	*str;
-	char	*tmp;
-	int		len;
-	int		i;
+	char *tmp;
 
-	i = 0;
-	str = va_arg(list, char *);
-	if (str == NULL)
-	{
-		ft_putstr("(null)");
-		return (6);
-	}
-	arg->value = ft_strdup(str);
-	len = ft_strlen(str);
 	if (arg->precision > 0 && arg->precision < len && arg->value[0] != '\0')
 	{
 		tmp = arg->value;
-		arg->value = ft_strsub(arg->value, 0 , arg->precision);
+		arg->value = ft_strsub(arg->value, 0, arg->precision);
 		ft_memdel((void **)&tmp);
 		len = ft_strlen(arg->value);
 	}
@@ -47,13 +35,32 @@ int		ft_print_string(va_list list, t_arg *arg)
 			arg->zero == 1 ? ft_putchar('0') : ft_putchar(' ');
 		ft_putstr(arg->value);
 	}
+	return (len);
+}
+
+int		ft_print_string(va_list list, t_arg *arg)
+{
+	char	*str;
+	int		len;
+	int		i;
+
+	i = 0;
+	str = va_arg(list, char *);
+	if (str == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	arg->value = ft_strdup(str);
+	len = ft_strlen(str);
+	len = set_flag_str(arg, len);
 	ft_memdel((void **)&(arg)->value);
 	return (len - 1);
 }
 
 int		ft_print_char(va_list list, t_arg *arg)
 {
-	int 	c;
+	int		c;
 	int		i;
 	int		n;
 
@@ -64,7 +71,7 @@ int		ft_print_char(va_list list, t_arg *arg)
 	if (arg->minus != 1)
 	{
 		while (n++ < arg->width - 1)
-				i = arg->zero == 1 ? ft_put('0', i) : ft_put(' ', i);
+			i = arg->zero == 1 ? ft_put('0', i) : ft_put(' ', i);
 		ft_putchar(c);
 		i++;
 	}
@@ -79,15 +86,16 @@ int		ft_print_char(va_list list, t_arg *arg)
 	return (arg->len);
 }
 
-int		ft_print_percent(t_arg *arg)
+int		ft_print_percent(va_list list, t_arg *arg)
 {
-	int 	c;
+	int		c;
 	int		i;
 	int		n;
 
 	n = 0;
 	i = 0;
 	c = '%';
+	(void)list;
 	arg->nbr = c;
 	if (arg->minus != 1)
 	{

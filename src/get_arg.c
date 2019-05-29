@@ -16,6 +16,7 @@ t_arg	*get_arg(const char *str, int *len)
 {
 	t_arg	*arg;
 
+	*len = 1;
 	if (!(arg = (t_arg *)ft_memalloc(sizeof(t_arg))))
 		return (NULL);
 	arg = get_width(str, arg);

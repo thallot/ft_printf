@@ -6,7 +6,7 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 13:54:56 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/17 14:20:47 by thallot          ###   ########.fr       */
+/*   Updated: 2019/05/29 11:34:46 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ int		ft_itoa_base_uns(int base, t_arg *arg)
 int		ft_itoa_base_unsl(int base, t_arg *arg)
 {
 	unsigned long int	value;
-	int								i;
-	int								count;
-	char							*nbr;
-	char							letters;
+	int					i;
+	int					count;
+	char				*nbr;
+	char				letters;
 
 	value = arg->nbr;
 	letters = arg->type == TYPE_XX ? 'A' : 'a';
@@ -87,10 +87,10 @@ int		ft_itoa_base_unsl(int base, t_arg *arg)
 int		ft_itoa_base_unsll(int base, t_arg *arg)
 {
 	uintmax_t			value;
-	int						i;
-	int						count;
-	char					*nbr;
-	char					letters;
+	int					i;
+	int					count;
+	char				*nbr;
+	char				letters;
 
 	value = arg->nbr;
 	letters = arg->type == TYPE_XX ? 'A' : 'a';
