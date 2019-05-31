@@ -42,6 +42,8 @@ int			set_exception(t_arg *arg, int n)
 		n--;
 	if (arg->type == TYPE_U && (arg->plus || arg->space) && !arg->minus)
 		n++;
+	if (arg->type == TYPE_O && (arg->plus || arg->space))
+		n++;
 	if (arg->type == TYPE_O && arg->sharp == 1)
 		n--;
 	if (arg->type == TYPE_X && arg->sharp == 1)
