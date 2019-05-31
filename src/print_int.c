@@ -25,7 +25,7 @@ int		ft_print_unsigned(va_list list, t_arg *arg)
 {
 	arg->nbr = convert_arg(arg, list);
 	arg = caster_int(arg);
-	arg->len = get_len_int(arg->nbr);
+	arg->len = get_len_uint(arg->nbr);
 	set_flag_uint(arg, arg->len);
 	return (arg->len);
 }
@@ -34,13 +34,17 @@ int		ft_print_hex(va_list list, t_arg *arg)
 {
 	arg->nbr = convert_arg(arg, list);
 	arg = caster_int(arg);
-	if (arg->conv == MODIFIER_LL)
-		ft_itoa_base_unsll(16, arg);
-	else if (arg->conv == MODIFIER_L)
-		ft_itoa_base_unsl(16, arg);
-	else
-		ft_itoa_base_uns(16, arg);
+	if (!exep_hex(arg))
+	{
+		if (arg->conv == MODIFIER_LL)
+			ft_itoa_base_unsll(16, arg);
+		else if (arg->conv == MODIFIER_L)
+			ft_itoa_base_unsl(16, arg);
+		else
+			ft_itoa_base_uns(16, arg);
+	}
 	set_flag_hex(arg, arg->len);
+	ft_memdel((void**)&(arg)->value);
 	return (arg->len);
 }
 
@@ -48,13 +52,17 @@ int		ft_print_hexx(va_list list, t_arg *arg)
 {
 	arg->nbr = convert_arg(arg, list);
 	arg = caster_int(arg);
-	if (arg->conv == MODIFIER_LL)
-		ft_itoa_base_unsll(16, arg);
-	else if (arg->conv == MODIFIER_L)
-		ft_itoa_base_unsl(16, arg);
-	else
-		ft_itoa_base_uns(16, arg);
+	if (!exep_hexx(arg))
+	{
+		if (arg->conv == MODIFIER_LL)
+			ft_itoa_base_unsll(16, arg);
+		else if (arg->conv == MODIFIER_L)
+			ft_itoa_base_unsl(16, arg);
+		else
+			ft_itoa_base_uns(16, arg);
+	}
 	set_flag_hexx(arg, arg->len);
+	ft_memdel((void**)&(arg)->value);
 	return (arg->len);
 }
 
@@ -62,12 +70,16 @@ int		ft_print_oct(va_list list, t_arg *arg)
 {
 	arg->nbr = convert_arg(arg, list);
 	arg = caster_int(arg);
-	if (arg->conv == MODIFIER_LL)
-		ft_itoa_base_unsll(8, arg);
-	else if (arg->conv == MODIFIER_L)
-		ft_itoa_base_unsl(8, arg);
-	else
-		ft_itoa_base_uns(8, arg);
+	if (!exep_oct(arg))
+	{
+		if (arg->conv == MODIFIER_LL)
+			ft_itoa_base_unsll(8, arg);
+		else if (arg->conv == MODIFIER_L)
+			ft_itoa_base_unsl(8, arg);
+		else
+			ft_itoa_base_uns(8, arg);
+	}
 	set_flag_oct(arg, arg->len);
+	ft_memdel((void**)&(arg)->value);
 	return (arg->len);
 }

@@ -17,6 +17,7 @@ SOURCES = ft_printf.c \
 		  print_string.c \
 			print_pointer.c \
 			print_float.c \
+			print_binary.c \
 			arg.c \
 			flag.c \
 			get_arg.c \
@@ -28,7 +29,8 @@ SOURCES = ft_printf.c \
 		  caster.c \
 		  free.c \
 		  functions.c \
-			putter.c
+			putter.c \
+			exception.c
 
 SRCS = $(addprefix $(SRC)/,$(SOURCES))
 

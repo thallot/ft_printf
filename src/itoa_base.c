@@ -12,26 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-char	*ft_itoa_base(int nb, int base)
-{
-	int				i;
-	int				count;
-	char			*nbr;
-
-	i = 1;
-	while ((int)ft_pow(base, i) - 1 < nb)
-		i++;
-	count = i;
-	nbr = (char*)ft_memalloc(sizeof(nbr) * i);
-	nbr[i] = '\0';
-	while (i-- > 0)
-	{
-		nbr[i] = (nb % base) + (nb % base > 9 ? 'a' - 10 : '0');
-		nb = nb / base;
-	}
-	return (nbr);
-}
-
 int		ft_itoa_base_uns(int base, t_arg *arg)
 {
 	unsigned int	value;
@@ -54,7 +34,8 @@ int		ft_itoa_base_uns(int base, t_arg *arg)
 		value = value / base;
 	}
 	arg->len += count;
-	arg->value = nbr;
+	arg->value = ft_strdup(nbr);
+	ft_memdel((void**)&nbr);
 	return (count);
 }
 
@@ -80,7 +61,8 @@ int		ft_itoa_base_unsl(int base, t_arg *arg)
 		value = value / base;
 	}
 	arg->len += count;
-	arg->value = nbr;
+	arg->value = ft_strdup(nbr);
+	ft_memdel((void**)&nbr);
 	return (count);
 }
 
@@ -106,8 +88,8 @@ int		ft_itoa_base_unsll(int base, t_arg *arg)
 	i = 0;
 	while (nbr[i] == '0')
 		i++;
-	arg->len += count - i;
-	arg->value = ft_strsub(nbr, i, 16 - i);
+	arg->value = arg->nbr == 0 ? ft_strdup("0") : ft_strsub(nbr, i, 16 - i);
+	arg->len = arg->nbr == 0 ? 1 : ft_strlen(arg->value);
 	ft_memdel((void**)&nbr);
-	return (count);
+	return (arg->len);
 }

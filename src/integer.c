@@ -55,9 +55,11 @@ void	set_flag_uint(t_arg *arg, int len)
 	else if (!arg->minus && arg->zero)
 		ft_put_all('0', &max, &i);
 	if (!(arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0))
-		ft_putnbr_max(arg->nbr);
+		ft_putnbr_umax(arg->nbr);
 	else
 		i--;
+	if (arg->minus && arg->plus)
+		i = ft_put(' ', i);
 	ft_put_all(' ', &max, &i);
 	len == 0 ? len = 1 : len;
 	arg->len = i + len;
@@ -75,10 +77,6 @@ void	set_flag_oct(t_arg *arg, int len)
 		ft_put_all(' ', &max, &i);
 	if (arg->sharp && ((!arg->nbr && arg->flag_preci == 1) || arg->nbr > 0))
 		i = ft_put('0', i);
-	else if (arg->plus)
-		i = ft_put('+', i);
-	else if (arg->space)
-		i = ft_put(' ', i);
 	if (arg->precision)
 		ft_put_all('0', &p, &i);
 	else if (!arg->minus && arg->zero)

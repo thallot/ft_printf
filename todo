@@ -3,7 +3,9 @@
 [OK] Gerer les conversion
 Gerer les floats %f
 Sauvegarder le signe du float dans la struct
-[50%] Gerer les pointeur %p
+[80%] Gerer les pointeur %p
 [OK] Gerer les flags
 [OK] Regler les fuites memoires sur les char * avec precision
-[90%] Regler les variable sans type
+[OK] Regler les variable sans type
+[OK] Gerer les leaks
+Gerer tous les UMAX

@@ -46,6 +46,7 @@ int		ft_print_value(va_list list, t_arg *arg)
 	int				ret;
 	int				(*f[11])(va_list, t_arg *);
 
+	f[0] = &ft_print_binary;
 	f[1] = &ft_print_float;
 	f[2] = &ft_print_oct;
 	f[3] = &ft_print_unsigned;

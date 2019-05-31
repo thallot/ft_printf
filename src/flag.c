@@ -14,7 +14,7 @@
 
 int		is_valid_type(char c)
 {
-	if (ft_strchr("diouxXcspf%", c) != NULL)
+	if (ft_strchr("diouxXcspf%b", c) != NULL)
 		return (1);
 	return (0);
 }

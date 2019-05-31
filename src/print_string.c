@@ -16,7 +16,7 @@ int		set_flag_str(t_arg *arg, int len)
 {
 	char *tmp;
 
-	if (arg->precision > 0 && arg->precision < len && arg->value[0] != '\0')
+	if (arg->flag_preci && arg->precision < len && arg->value[0] != '\0')
 	{
 		tmp = arg->value;
 		arg->value = ft_strsub(arg->value, 0, arg->precision);
@@ -47,12 +47,10 @@ int		ft_print_string(va_list list, t_arg *arg)
 	i = 0;
 	str = va_arg(list, char *);
 	if (str == NULL)
-	{
-		ft_putstr("(null)");
-		return (6);
-	}
-	arg->value = ft_strdup(str);
-	len = ft_strlen(str);
+		arg->value = ft_strdup("(null)");
+	else
+		arg->value = ft_strdup(str);
+	len = ft_strlen(arg->value);
 	len = set_flag_str(arg, len);
 	ft_memdel((void **)&(arg)->value);
 	return (len - 1);

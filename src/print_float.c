@@ -6,98 +6,60 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:57:11 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/29 11:33:31 by thallot          ###   ########.fr       */
+/*   Updated: 2019/05/30 16:19:56 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	reverse(char *str, int len)
-{
-	int i;
-	int j;
-	int tmp;
-
-	i = 0;
-	j = len - 1;
-	while (i < j)
-	{
-		tmp = str[i];
-		str[i] = str[j];
-		str[j] = tmp;
-		i++;
-		j--;
-	}
-}
-
-int		ft_itoa_float(int x, char str[], int d)
-{
-	int i;
-
-	i = 0;
-	while (x)
-	{
-		str[i++] = (x % 10) + '0';
-		x = x / 10;
-	}
-	while (i < d)
-		str[i++] = '0';
-	reverse(str, i);
-	str[i] = '\0';
-	return (i);
-}
-
-void	ftoa(float n, char *res, int preci)
-{
-	int		ipart;
-	float	fpart;
-	int		i;
-
-	ipart = (int)n;
-	fpart = n - (float)ipart;
-	i = ft_itoa_float(ipart, res, 0);
-	if (preci != 0)
-	{
-		res[i] = '.';
-		fpart = fpart * ft_pow(10, preci);
-		ft_itoa_float((int)fpart, res + i + 1, preci);
-	}
-}
-
-int		get_len_float(float nb)
+int		set_flag_float(t_arg *arg, int preci, char *intp, char *decip)
 {
 	int len;
+	int i;
+	int x;
 
-	len = 1;
-	if (nb == 0)
-		return (len);
-	while (nb > 10)
-	{
-		len++;
-		nb = nb / 10;
-		if (len > 300)
-			break ;
-	}
-	return (len);
+	i = 0;
+	x = 0;
+	len = ft_strlen(intp) + ft_strlen(decip) + 1;
+	if (arg->plus || arg->sign)
+		i = arg->sign == 1 ? ft_put('-', i) : ft_put('+', i);
+	if (arg->space)
+		i = ft_put(' ', i);
+	ft_putstr(intp);
+	if (preci || arg->sharp)
+		ft_putchar('.');
+	if (preci != 0)
+		ft_putstr(decip);
+	while (arg->width - len > x++ && !arg->minus)
+		i = arg->zero || intp[0] == '0' ? ft_put('0', i) : ft_put(' ', i);
+	return (len + i);
 }
 
 int		ft_print_float(va_list list, t_arg *arg)
 {
-	float	nbr;
-	char	tab[308];
-	int		len;
-	int		preci;
+	long double					nbr;
+	int							i;
+	int							k;
+	char						*intp;
+	char						*floatp;
 
-	nbr = (float)va_arg(list, double);
+	k = 1;
+	arg->precision = arg->flag_preci == 1 ? arg->precision : 6;
+	nbr = va_arg(list, double);
 	if (nbr < 0)
 	{
-		nbr = -nbr;
 		arg->sign = 1;
-		ft_putchar('-');
+		nbr *= -1;
 	}
-	len = get_len_float(nbr);
-	preci = arg->flag_preci == 1 ? arg->precision : 6;
-	ftoa(nbr, tab, preci);
-	ft_putstr(tab);
-	return (0);
+	if (arg->precision == 0 && (nbr - (signed long int)nbr) >= 0.5)
+		nbr += 1;
+	intp = ft_itoa((signed long int)nbr);
+	nbr -= (signed long int)nbr;
+	i = arg->precision;
+	while (i--)
+		k *= 10;
+	nbr *= k;
+	floatp = ft_itoa((signed long int)(nbr + 0.5));
+	arg->len = set_flag_float(arg, arg->precision, intp, floatp);
+	return (arg->len);
 }

@@ -39,6 +39,25 @@ int			get_len_int(intmax_t nb)
 	return (len);
 }
 
+int			get_len_uint(uintmax_t nb)
+{
+	int			len;
+
+	len = 1;
+	if (nb == ULLONG_MAX)
+		return (21);
+	if (nb == ULONG_MAX)
+		return (10);
+	if (nb == 0)
+		return (1);
+	while (nb >= 10)
+	{
+		nb /= 10;
+		len++;
+	}
+	return (len);
+}
+
 void		ft_putnbr_max(long long int nb)
 {
 	uintmax_t z;
@@ -57,6 +76,26 @@ void		ft_putnbr_max(long long int nb)
 		z = -nb;
 	else
 		z = nb;
+	if (z >= 10)
+		ft_putnbr(z / 10);
+	ft_putchar((z % 10) + 48);
+}
+
+void		ft_putnbr_umax(uintmax_t nb)
+{
+	uintmax_t z;
+
+	if (nb == ULLONG_MAX)
+	{
+		ft_putstr("18446744073709551615");
+		return ;
+	}
+	if (nb == ULONG_MAX)
+	{
+		ft_putstr("4294967295");
+		return ;
+	}
+	z = nb;
 	if (z >= 10)
 		ft_putnbr(z / 10);
 	ft_putchar((z % 10) + 48);

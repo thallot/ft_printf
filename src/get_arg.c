@@ -34,6 +34,8 @@ t_arg	*get_arg(const char *str, int *len)
 		arg->space = 0;
 	if (arg->flag_preci == 0)
 		arg->precision = 0;
+	if (arg->zero || arg->space || arg->sharp || arg->plus)
+		arg->flag = 1;
 	return (arg);
 }
 
@@ -98,6 +100,7 @@ t_arg	*get_type(const char *str, t_arg *arg, int *i)
 	str[*i] == 's' ? arg->type = TYPE_S : arg->type;
 	str[*i] == 'p' ? arg->type = TYPE_P : arg->type;
 	str[*i] == 'f' ? arg->type = TYPE_F : arg->type;
+	str[*i] == 'b' ? arg->type = TYPE_B : arg->type;
 	str[*i] == '%' ? arg->type = TYPE_PERCENT : arg->type;
 	*i = *i + 1;
 	return (arg);
