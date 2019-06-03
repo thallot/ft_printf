@@ -12,6 +12,11 @@
 
 #include "../includes/ft_printf.h"
 
+uintmax_t ft_uabs(intmax_t nb)
+{
+	return (nb > 0 ? nb : -nb);
+}
+
 int			get_len_int(intmax_t nb)
 {
 	int			len;
@@ -45,7 +50,7 @@ int			get_len_uint(uintmax_t nb)
 
 	len = 1;
 	if (nb == ULLONG_MAX)
-		return (21);
+		return (20);
 	if (nb == ULONG_MAX)
 		return (10);
 	if (nb == 0)

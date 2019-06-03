@@ -20,6 +20,8 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 # define BUFFER_SIZE 1024
+# define TYPE_I 11
+# define TYPE_PERCENT 10
 # define TYPE_S 9
 # define TYPE_C 8
 # define TYPE_D 7
@@ -30,17 +32,10 @@
 # define TYPE_O 2
 # define TYPE_F 1
 # define TYPE_B 0
-# define TYPE_PERCENT 10
 # define MODIFIER_H 4
 # define MODIFIER_HH 3
 # define MODIFIER_L 2
 # define MODIFIER_LL 1
-# define WHITE \x1b[37m
-# define BLUE \x1b[36m
-# define GREEN \033[1;32m
-# define GREY \x1b[33m
-# define RED \x1b[31m
-
 /*
 ********************************* Structure ***********************************
 */
@@ -158,6 +153,7 @@ void					ft_putnbr_max(long long int nb);
 void					ft_putnbr_umax(uintmax_t nb);
 int						get_len_int(intmax_t nb);
 int						get_len_uint(uintmax_t nb);
+uintmax_t 		ft_uabs(intmax_t nb);
 /*
 ******************************** Putter.c **************************************
 */
@@ -188,4 +184,7 @@ int						set_flag_float(t_arg *arg, int preci,
 ******************************** Binary.c *************************************
 */
 int						ft_print_binary(va_list list, t_arg *arg);
+int						ft_print_i(va_list list, t_arg *arg);
+
+char					*ft_uitoa(uintmax_t abs);
 #endif

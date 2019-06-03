@@ -29,3 +29,12 @@ int		ft_print_binary(va_list list, t_arg *arg)
 	ft_memdel((void**)&(arg)->value);
 	return (arg->len);
 }
+
+int		ft_print_i(va_list list, t_arg *arg)
+{
+	arg->nbr = convert_arg(arg, list);
+	arg = caster_int(arg);
+	arg->len = get_len_int(arg->nbr);
+	set_flag_int(arg, arg->len);
+	return (arg->len);
+}

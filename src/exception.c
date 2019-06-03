@@ -28,7 +28,7 @@ int   exep_hex(t_arg *arg)
   if ((uintmax_t)arg->nbr == ULLONG_MAX)
   {
       arg->value = ft_strdup("ffffffffffffffff");
-      arg->len = 17;
+      arg->len = 16;
       return (arg->len);
   }
   return (0);

@@ -19,6 +19,7 @@ void	set_flag_int(t_arg *arg, int len)
 	int i;
 
 	i = 0;
+	arg->value = ft_itoa(ft_uabs(arg->nbr));
 	max = set_offset(&len, arg, arg->nbr, &p);
 	if (!arg->minus && (arg->precision || !arg->zero))
 		ft_put_all(' ', &max, &i);
@@ -33,7 +34,7 @@ void	set_flag_int(t_arg *arg, int len)
 	else if (!arg->minus && arg->zero)
 		ft_put_all('0', &max, &i);
 	if (!(arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0))
-		ft_putnbr_max(arg->nbr);
+		ft_putstr(arg->value);
 	else
 		i--;
 	ft_put_all(' ', &max, &i);
@@ -47,6 +48,7 @@ void	set_flag_uint(t_arg *arg, int len)
 	int i;
 
 	i = 0;
+	arg->value = ft_uitoa(arg->nbr);
 	max = set_offset(&len, arg, arg->nbr, &p);
 	if (!arg->minus && (arg->precision || !arg->zero))
 		ft_put_all(' ', &max, &i);
@@ -55,7 +57,7 @@ void	set_flag_uint(t_arg *arg, int len)
 	else if (!arg->minus && arg->zero)
 		ft_put_all('0', &max, &i);
 	if (!(arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0))
-		ft_putnbr_umax(arg->nbr);
+		ft_putstr(arg->value);
 	else
 		i--;
 	if (arg->minus && arg->plus)

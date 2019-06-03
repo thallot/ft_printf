@@ -30,7 +30,8 @@ SOURCES = ft_printf.c \
 		  free.c \
 		  functions.c \
 			putter.c \
-			exception.c
+			exception.c \
+			itoa.c
 
 SRCS = $(addprefix $(SRC)/,$(SOURCES))
 

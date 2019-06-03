@@ -49,21 +49,22 @@ int		ft_itoa_base_unsl(int base, t_arg *arg)
 
 	value = arg->nbr;
 	letters = arg->type == TYPE_XX ? 'A' : 'a';
-	i = 1;
-	while (ft_powll(base, i) - 1 < value)
-		i++;
-	count = i;
-	nbr = (char*)ft_memalloc(sizeof(nbr) * i);
+	count = 18;
+	i = 18;
+	nbr = (char*)ft_memalloc(sizeof(nbr) * 18);
 	nbr[i] = '\0';
 	while (i-- > 0)
 	{
 		nbr[i] = (value % base) + (value % base > 9 ? letters - 10 : '0');
 		value = value / base;
 	}
-	arg->len += count;
-	arg->value = ft_strdup(nbr);
+	i = 0;
+	while (nbr[i] == '0')
+		i++;
+	arg->value = arg->nbr == 0 ? ft_strdup("0") : ft_strsub(nbr, i, 18 - i);
+	arg->len = arg->nbr == 0 ? 1 : ft_strlen(arg->value);
 	ft_memdel((void**)&nbr);
-	return (count);
+	return (arg->len);
 }
 
 int		ft_itoa_base_unsll(int base, t_arg *arg)
@@ -76,9 +77,9 @@ int		ft_itoa_base_unsll(int base, t_arg *arg)
 
 	value = arg->nbr;
 	letters = arg->type == TYPE_XX ? 'A' : 'a';
-	count = 16;
-	i = 16;
-	nbr = (char*)ft_memalloc(sizeof(nbr) * 16);
+	count = 18;
+	i = 18;
+	nbr = (char*)ft_memalloc(sizeof(nbr) * 18);
 	nbr[i] = '\0';
 	while (i-- > 0)
 	{
@@ -88,7 +89,7 @@ int		ft_itoa_base_unsll(int base, t_arg *arg)
 	i = 0;
 	while (nbr[i] == '0')
 		i++;
-	arg->value = arg->nbr == 0 ? ft_strdup("0") : ft_strsub(nbr, i, 16 - i);
+	arg->value = arg->nbr == 0 ? ft_strdup("0") : ft_strsub(nbr, i, 18 - i);
 	arg->len = arg->nbr == 0 ? 1 : ft_strlen(arg->value);
 	ft_memdel((void**)&nbr);
 	return (arg->len);

@@ -91,7 +91,7 @@ t_arg	*get_type(const char *str, t_arg *arg, int *i)
 {
 	arg->type = -1;
 	str[*i] == 'd' ? arg->type = TYPE_D : arg->type;
-	str[*i] == 'i' ? arg->type = TYPE_D : arg->type;
+	str[*i] == 'i' ? arg->type = TYPE_I : arg->type;
 	str[*i] == 'o' ? arg->type = TYPE_O : arg->type;
 	str[*i] == 'u' ? arg->type = TYPE_U : arg->type;
 	str[*i] == 'x' ? arg->type = TYPE_X : arg->type;

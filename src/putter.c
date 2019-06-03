@@ -44,12 +44,18 @@ int			set_exception(t_arg *arg, int n)
 		n++;
 	if (arg->type == TYPE_O && (arg->plus || arg->space))
 		n++;
-	if (arg->type == TYPE_O && arg->sharp == 1)
+	if (arg->type == TYPE_O && arg->sharp)
 		n--;
-	if (arg->type == TYPE_X && arg->sharp == 1)
+	if (arg->type == TYPE_X && arg->sharp == 1 && arg->nbr != 0)
 		n = n - 2;
-	if (arg->type == TYPE_XX && arg->sharp == 1)
+	if (arg->type == TYPE_X && (arg->plus || arg->space))
+		n++;
+	if (arg->type == TYPE_XX && arg->sharp == 1 && arg->nbr != 0)
 		n = n - 2;
+	if (arg->type == TYPE_XX && (arg->plus || arg->space))
+		n++;
+	if (arg->nbr == 0 && arg->zero && arg->width)
+		n--;
 	return (n);
 }
 
@@ -57,7 +63,8 @@ int			set_offset(int *len, t_arg *arg, intmax_t num, int *p)
 {
 	int n;
 
-	*len -= (num < 0) ? 1 : 0;
+	if (arg->type == TYPE_D || arg->type == TYPE_I)
+		*len -= (num < 0) ? 1 : 0;
 	*p = (arg->precision - *len > 0) ? arg->precision - *len : 0;
 	*len = (num == 0 && arg->precision == 0) ? 0 : *len;
 	n = arg->width - *len - *p;
