@@ -820,5 +820,10 @@ int		main(void)
 		or = printf("%04d\n", 0);
 		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("{% 03d}\n", 0);
+		or = printf("{% 03d}\n", 0);
+		ft_print_result(mr, or, __LINE__);
+
+
 	return (0);
 }

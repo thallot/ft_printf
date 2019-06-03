@@ -38,7 +38,7 @@ int			ft_putter(char *c, int i)
 int			set_exception(t_arg *arg, int n, int *p)
 {
 	if ((arg->type == TYPE_D || arg->type == TYPE_I)
-			&& (arg->plus || arg->space || arg->minus)
+			&& (arg->plus || arg->minus)
 			&& arg->zero && arg->nbr == 0)
 		n--;
 	if (arg->type == TYPE_U && (arg->plus || arg->space) && !arg->minus)
