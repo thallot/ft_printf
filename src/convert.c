@@ -24,6 +24,10 @@ intmax_t	conver_arg_s(t_arg *arg, va_list list)
 		nb = (char)va_arg(list, int);
 	else if (arg->conv == MODIFIER_H)
 		nb = (short int)va_arg(list, int);
+	else if (arg->conv == MODIFIER_Z)
+		nb = (size_t)va_arg(list, size_t);
+	else if (arg->conv == MODIFIER_J)
+		nb = (intmax_t)va_arg(list, intmax_t);
 	else
 		nb = va_arg(list, int);
 	return (nb);
@@ -41,6 +45,10 @@ intmax_t	convert_arg_u(t_arg *arg, va_list list)
 		nb = (unsigned char)va_arg(list, int);
 	else if (arg->conv == MODIFIER_H)
 		nb = (unsigned short int)va_arg(list, int);
+	else if (arg->conv == MODIFIER_Z)
+		nb = (ssize_t)va_arg(list, ssize_t);
+	else if (arg->conv == MODIFIER_J)
+		nb = (uintmax_t)va_arg(list, uintmax_t);
 	else
 		nb = va_arg(list, unsigned int);
 	return (nb);

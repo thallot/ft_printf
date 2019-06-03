@@ -32,6 +32,10 @@ t_arg	*caster_uint(t_arg *arg)
 		arg->nbr = (unsigned long int)arg->nbr;
 	else if (arg->conv == MODIFIER_LL)
 		arg->nbr = (uintmax_t)arg->nbr;
+	else if (arg->conv == MODIFIER_Z)
+		arg->nbr = (size_t)arg->nbr;
+	else if (arg->conv == MODIFIER_J)
+		arg->nbr = (uintmax_t)arg->nbr;
 	else
 		arg->nbr = (unsigned int)arg->nbr;
 	return (arg);
@@ -47,6 +51,10 @@ t_arg	*caster_sint(t_arg *arg)
 		arg->nbr = (short int)arg->nbr;
 	else if (arg->conv == MODIFIER_HH)
 		arg->nbr = (char)arg->nbr;
+	else if (arg->conv == MODIFIER_Z)
+		arg->nbr = (ssize_t)arg->nbr;
+	else if (arg->conv == MODIFIER_J)
+		arg->nbr = (intmax_t)arg->nbr;
 	else
 		arg->nbr = (int)arg->nbr;
 	return (arg);

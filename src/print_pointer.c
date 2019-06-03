@@ -42,7 +42,7 @@ void	set_flag_point(t_arg *arg, int len)
 	i = 0;
 	while (i < arg->width - len && arg->minus == 0)
 	{
-		ft_putchar(' ');
+		arg->zero ? ft_putchar('0') : ft_putchar(' ');
 		i++;
 	}
 	if (!(arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0))

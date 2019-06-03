@@ -81,6 +81,8 @@ t_arg	*get_flag(const char *str, t_arg *arg, int *i)
 		{
 			str[*i] == 'h' ? arg->conv = MODIFIER_H : arg->conv;
 			str[*i] == 'l' ? arg->conv = MODIFIER_L : arg->conv;
+			str[*i] == 'z' ? arg->conv = MODIFIER_Z : arg->conv;
+			str[*i] == 'j' ? arg->conv = MODIFIER_J : arg->conv;
 		}
 		if (is_valid(str[*i]) == 0)
 			break ;

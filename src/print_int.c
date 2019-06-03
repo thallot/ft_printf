@@ -38,7 +38,7 @@ int		ft_print_hex(va_list list, t_arg *arg)
 	arg = caster_int(arg);
 	if (!exep_hex(arg))
 	{
-		if (arg->conv == MODIFIER_LL)
+		if (arg->conv == MODIFIER_LL || arg->conv == MODIFIER_J)
 			ft_itoa_base_unsll(16, arg);
 		else if (arg->conv == MODIFIER_L)
 			ft_itoa_base_unsl(16, arg);
@@ -56,7 +56,7 @@ int		ft_print_hexx(va_list list, t_arg *arg)
 	arg = caster_int(arg);
 	if (!exep_hexx(arg))
 	{
-		if (arg->conv == MODIFIER_LL)
+		if (arg->conv == MODIFIER_LL || arg->conv == MODIFIER_J)
 			ft_itoa_base_unsll(16, arg);
 		else if (arg->conv == MODIFIER_L)
 			ft_itoa_base_unsl(16, arg);
@@ -74,7 +74,7 @@ int		ft_print_oct(va_list list, t_arg *arg)
 	arg = caster_int(arg);
 	if (!exep_oct(arg))
 	{
-		if (arg->conv == MODIFIER_LL)
+		if (arg->conv == MODIFIER_LL || arg->conv == MODIFIER_J)
 			ft_itoa_base_unsll(8, arg);
 		else if (arg->conv == MODIFIER_L)
 			ft_itoa_base_unsl(8, arg);
