@@ -19,7 +19,8 @@ void	set_flag_int(t_arg *arg, int len)
 	int i;
 
 	i = 0;
-	arg->value = ft_itoa(ft_uabs(arg->nbr));
+	if (!exep_int(arg))
+		arg->value = ft_itoa(ft_uabs(arg->nbr));
 	max = set_offset(&len, arg, arg->nbr, &p);
 	if (!arg->minus && (arg->precision || !arg->zero))
 		ft_put_all(' ', &max, &i);

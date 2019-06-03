@@ -74,8 +74,9 @@ t_arg	*get_flag(const char *str, t_arg *arg, int *i)
 		{
 			str[*i] == 'h' ? arg->conv = MODIFIER_HH : arg->conv;
 			str[*i] == 'l' ? arg->conv = MODIFIER_LL : arg->conv;
+			*i = *i + 1;
 		}
-		if (arg->conv == 0)
+		else
 		{
 			str[*i] == 'h' ? arg->conv = MODIFIER_H : arg->conv;
 			str[*i] == 'l' ? arg->conv = MODIFIER_L : arg->conv;

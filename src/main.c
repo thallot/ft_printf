@@ -800,6 +800,18 @@ int		main(void)
 		or = printf("%#0#4lo\n", 0);
 		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("%hhld\n", (unsigned char)128);
+		or = printf("%hhld\n", (unsigned char)128);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%ld\n", LONG_MIN);
+		or = printf("%ld\n", LONG_MIN);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%#0.3o\n", 0);
+		or = printf("%#0.3o\n", 0);
+		ft_print_result(mr, or, __LINE__);
+
 
 		printf("\033[1;37m== End precision modifiers ==\033[0m\n\n");
 	return (0);

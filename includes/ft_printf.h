@@ -174,6 +174,7 @@ int						ft_print_float(va_list list, t_arg *arg);
 int						exep_oct(t_arg *arg);
 int						exep_hex(t_arg *arg);
 int						exep_hexx(t_arg *arg);
+int   				exep_int(t_arg *arg);
 /*
 ******************************** Float.c **************************************
 */

@@ -37,6 +37,10 @@ int			ft_putter(char *c, int i)
 
 int			set_exception(t_arg *arg, int n)
 {
+	if ((arg->type == TYPE_D || arg->type == TYPE_I)
+			&& (arg->plus || arg->space || arg->minus)
+			&& arg->zero && arg->nbr == 0)
+		n--;
 	if (arg->type == TYPE_D && (arg->plus || arg->space || arg->minus)
 			&& arg->zero && arg->nbr == 0)
 		n--;
@@ -44,7 +48,7 @@ int			set_exception(t_arg *arg, int n)
 		n++;
 	if (arg->type == TYPE_O && (arg->plus || arg->space))
 		n++;
-	if (arg->type == TYPE_O && arg->sharp)
+	if (arg->type == TYPE_O && arg->sharp && arg->nbr != 0)
 		n--;
 	if (arg->type == TYPE_X && arg->sharp == 1 && arg->nbr != 0)
 		n = n - 2;
