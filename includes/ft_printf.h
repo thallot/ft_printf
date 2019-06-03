@@ -161,7 +161,7 @@ int						set_offset(int *len, t_arg *arg, intmax_t num, int *p);
 int						ft_put(char c, int i);
 void					ft_put_all(char c, int *n, int *i);
 int						ft_putter(char *c, int i);
-int						set_exception(t_arg *arg, int n);
+int						set_exception(t_arg *arg, int n, int *p);
 /*
 ******************************** Print_Pointer.c *******************************
 */

@@ -808,11 +808,17 @@ int		main(void)
 		or = printf("%ld\n", LONG_MIN);
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%#0.3o\n", 0);
-		or = printf("%#0.3o\n", 0);
+		mr = ft_printf("%#0.3o\n", 17);
+		or = printf("%#0.3o\n", 17);
 		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("{%+03d}\n", 0);
+		or = printf("{%+03d}\n", 0);
+		ft_print_result(mr, or, __LINE__);
 
-		printf("\033[1;37m== End precision modifiers ==\033[0m\n\n");
+		mr = ft_printf("%04d\n", 0);
+		or = printf("%04d\n", 0);
+		ft_print_result(mr, or, __LINE__);
+
 	return (0);
 }
