@@ -44,7 +44,7 @@ int		ft_print(const char *str, va_list list, int i, int count)
 int		ft_print_value(va_list list, t_arg *arg)
 {
 	int				ret;
-	int				(*f[12])(va_list, t_arg *);
+	int				(*f[13])(va_list, t_arg *);
 
 	f[0] = &ft_print_binary;
 	f[1] = &ft_print_float;
@@ -58,6 +58,7 @@ int		ft_print_value(va_list list, t_arg *arg)
 	f[9] = &ft_print_string;
 	f[10] = &ft_print_percent;
 	f[11] = &ft_print_i;
+	f[12] = &ft_print_base;
 	arg->len = 0;
 	if (arg->type == -1)
 		return (0);

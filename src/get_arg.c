@@ -67,7 +67,7 @@ t_arg	*get_flag(const char *str, t_arg *arg, int *i)
 		str[*i] == '-' ? arg->minus = 1 : arg->minus;
 		str[*i] == '+' ? arg->plus = 1 : arg->plus;
 		str[*i] == '#' ? arg->sharp = 1 : arg->sharp;
-		if (str[*i] == '0' && ft_isdigit(str[*i - 1]) == 0)
+		if (str[*i] == '0' && ft_isdigit(str[*i - 1]) == 0 && str[*i - 1] != '.')
 			arg->zero = 1;
 		str[*i] == ' ' ? arg->space = 1 : arg->space;
 		str[*i] == '.' ? arg->flag_preci = 1 : arg->flag_preci;
@@ -105,6 +105,7 @@ t_arg	*get_type(const char *str, t_arg *arg, int *i)
 	str[*i] == 'p' ? arg->type = TYPE_P : arg->type;
 	str[*i] == 'f' ? arg->type = TYPE_F : arg->type;
 	str[*i] == 'b' ? arg->type = TYPE_B : arg->type;
+	str[*i] == 'B' ? arg->type = TYPE_BB : arg->type;
 	str[*i] == '%' ? arg->type = TYPE_PERCENT : arg->type;
 	*i = *i + 1;
 	return (arg);

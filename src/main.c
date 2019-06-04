@@ -828,6 +828,30 @@ int		main(void)
 		or = printf("{%0-3d}\n", 0);
 		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("{%8B}\n", 42);
+		or = printf("{%o}\n", 42);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("MINE>\t[%018.4p]\n", NULL);
+		or = printf("ORIG>\t[%018.4p]\n", NULL);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("MINE>\t% #9.0p\n", 482);
+		or = printf("ORIG>\t% #9.0p\n", 482);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("% p|%+p\n", 42, 42);
+		or = printf("% p|%+p\n", 42, 42);
+		ft_print_result(mr, or, __LINE__);
+
+
+		mr = ft_printf("% p|\n", &free);
+		or = printf("% p|\n", &free);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%----24p et hello %2p %12p\n", &mr, &or, NULL);
+		or = printf("%----24p et hello %2p %12p\n", &mr, &or, NULL);
+		ft_print_result(mr, or, __LINE__);
 
 
 	return (0);

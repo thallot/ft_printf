@@ -15,10 +15,13 @@
 int		ft_print_pointer(va_list list, t_arg *arg)
 {
 	arg->nbr = va_arg(list, uintmax_t);
+	arg->sharp = 1;
+	arg->space = 0;
+	arg->plus = 0;
 	if (arg->nbr != 0 || arg->width > 0 || arg->precision)
 	{
 		ft_itoa_base_unsll(16, arg);
-		arg->len = ft_strlen(arg->value) + 2;
+		arg->len = ft_strlen(arg->value);
 		set_flag_point(arg, arg->len);
 		ft_memdel((void **)&(arg)->value);
 	}
@@ -37,28 +40,29 @@ int		ft_print_pointer(va_list list, t_arg *arg)
 
 void	set_flag_point(t_arg *arg, int len)
 {
+	int max;
+	int p;
 	int i;
 
 	i = 0;
-	while (i < arg->width - len && arg->minus == 0)
-	{
-		arg->zero ? ft_putchar('0') : ft_putchar(' ');
-		i++;
-	}
+	max = set_offset(&len, arg, arg->nbr, &p);
+	max = max - 2;
+	if (arg->precision > arg->len)
+		max++;
+	if (arg->len == 1 && !arg->flag_preci)
+		max--;
+	if (!arg->minus && (arg->precision || !arg->zero))
+		ft_put_all(' ', &max, &i);
+	i = ft_putter("0x", i);
+	if (arg->precision)
+		ft_put_all('0', &p, &i);
+	else if (!arg->minus && arg->zero)
+		ft_put_all('0', &max, &i);
 	if (!(arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0))
-	{
-		ft_putstr("0x");
-		while (i < arg->precision - len + 2)
-		{
-			ft_putchar('0');
-			i++;
-		}
 		ft_putstr(arg->value);
-	}
-	while (i < arg->width - len && arg->minus == 1)
-	{
-		ft_putchar(' ');
-		i++;
-	}
+	else
+		i--;
+	ft_put_all(' ', &max, &i);
 	arg->len = len == 0 ? i + 1 : i + len;
+	ft_memdel((void **)&(arg)->value);
 }

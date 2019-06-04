@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 # define BUFFER_SIZE 1024
+# define TYPE_BB 12
 # define TYPE_I 11
 # define TYPE_PERCENT 10
 # define TYPE_S 9
@@ -188,6 +189,7 @@ int						set_flag_float(t_arg *arg, int preci,
 */
 int						ft_print_binary(va_list list, t_arg *arg);
 int						ft_print_i(va_list list, t_arg *arg);
+int						ft_print_base(va_list list, t_arg *arg);
 
 char					*ft_uitoa(uintmax_t abs);
 #endif

@@ -24,7 +24,7 @@ void		ft_put_all(char c, int *n, int *i)
 int			ft_put(char c, int i)
 {
 	ft_putchar(c);
-	(i)++;
+	i++;
 	return (i);
 }
 
