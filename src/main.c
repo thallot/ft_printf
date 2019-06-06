@@ -797,5 +797,19 @@ int		main(void)
 		mr = ft_printf("%#-+3 .3f\n", -7.6988);
 		or = printf("%#-+3 .3f\n", -7.6988);
 		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%.5u|%-.5u|%0.5u\n", 0U, 0U, 0U);
+		or = printf("%.5u|%-.5u|%0.5u\n", 0U, 0U, 0U);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%23u|%-23u|%023u", 0U, 0U, 0U);
+		ft_putchar('\n');
+		or = printf("%23u|%-23u|%023u", 0U, 0U, 0U);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+
+
 	return (0);
 }
