@@ -802,12 +802,34 @@ int		main(void)
 		or = printf("%.5u|%-.5u|%0.5u\n", 0U, 0U, 0U);
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%23u|%-23u|%023u", 0U, 0U, 0U);
+		mr = ft_printf("%1.X|%-1.X|%#1.X|%01.X", 0U, 0U, 0U, 0U);
 		ft_putchar('\n');
-		or = printf("%23u|%-23u|%023u", 0U, 0U, 0U);
+		or = printf("%1.X|%-1.X|%#1.X|%01.X", 0U, 0U, 0U, 0U);
 		ft_putchar('\n');
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%23X|%-23X|%#X|%023X", 0U, 0U, 0U, 0U);
+		ft_putchar('\n');
+		or = printf("%23X|%-23X|%#X|%023X", 0U, 0U, 0U, 0U);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%.5o|%-.5o|%#.5o|%0.5o", 0U, 0U, 0U, 0U);
+		ft_putchar('\n');
+		or = printf("%.5o|%-.5o|%#.5o|%0.5o", 0U, 0U, 0U, 0U);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+
+				mr = ft_printf("%23.5hho|%-23.5hho|%#23.5hho|%023.5hho", ULLONG_MAX, ULLONG_MAX, ULLONG_MAX, ULLONG_MAX);
+				ft_putchar('\n');
+				or = printf("%23.5hho|%-23.5hho|%#23.5hho|%023.5hho", ULLONG_MAX, ULLONG_MAX, ULLONG_MAX, ULLONG_MAX);
+				ft_putchar('\n');
+				ft_putchar('\n');
+				ft_print_result(mr, or, __LINE__);
 
 
 

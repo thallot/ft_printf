@@ -78,7 +78,7 @@ void	set_flag_oct(t_arg *arg, int len)
 	max = set_offset(&len, arg, arg->nbr, &p);
 	if (!arg->minus && (arg->precision || !arg->zero))
 		ft_put_all(' ', &max, &i);
-	if (arg->sharp && ((!arg->nbr && arg->flag_preci == 1) || arg->nbr > 0))
+	if ((arg->sharp && arg->nbr != 0) || arg->sign)
 		i = ft_put('0', i);
 	if (arg->precision)
 		ft_put_all('0', &p, &i);
@@ -102,7 +102,7 @@ void	set_flag_hex(t_arg *arg, int len)
 	max = set_offset(&len, arg, arg->nbr, &p);
 	if (!arg->minus && (arg->precision || !arg->zero))
 		ft_put_all(' ', &max, &i);
-	if (arg->sharp == 1 && arg->nbr != 0)
+	if ((arg->sharp == 1 && arg->nbr != 0))
 		i = ft_putter("0x", i);
 	else if (arg->plus)
 		i = ft_put('+', i);
