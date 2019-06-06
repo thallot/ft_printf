@@ -49,8 +49,10 @@ void	set_flag_point(t_arg *arg, int len)
 	max = max - 2;
 	if (arg->precision > arg->len)
 		max++;
-	if (arg->len == 1 && !arg->flag_preci)
+	if (arg->len == 1)
 		max--;
+	if (arg->zero && arg->nbr == 0)
+		max++;
 	if (!arg->minus && (arg->precision || !arg->zero))
 		ft_put_all(' ', &max, &i);
 	i = ft_putter("0x", i);

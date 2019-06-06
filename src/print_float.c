@@ -23,14 +23,12 @@ int		set_flag_float(t_arg *arg, int preci, char *intp, char *decip)
 	len = ft_strlen(intp) + ft_strlen(decip) + 1;
 	if (arg->plus || arg->sign)
 		i = arg->sign == 1 ? ft_put('-', i) : ft_put('+', i);
-	if (arg->space)
-		i = ft_put(' ', i);
 	ft_putstr(intp);
 	if (preci || arg->sharp)
 		ft_putchar('.');
 	if (preci != 0)
 		ft_putstr(decip);
-	while (arg->width - len > x++ && !arg->minus)
+	while (arg->width - len > x++ + 1)
 		i = arg->zero || intp[0] == '0' ? ft_put('0', i) : ft_put(' ', i);
 	return (len + i);
 }
@@ -60,6 +58,11 @@ int		ft_print_float(va_list list, t_arg *arg)
 		k *= 10;
 	nbr *= k;
 	floatp = ft_itoa((signed long int)(nbr + 0.5));
+	while (ft_strlen(floatp) < (size_t)arg->precision)
+		floatp = ft_joinc(floatp, '0');
 	arg->len = set_flag_float(arg, arg->precision, intp, floatp);
+	ft_memdel((void**)&intp);
+	ft_memdel((void**)&floatp);
+	ft_memdel((void**)&(arg)->value);
 	return (arg->len);
 }

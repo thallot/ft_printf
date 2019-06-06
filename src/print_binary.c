@@ -36,6 +36,7 @@ int		ft_print_i(va_list list, t_arg *arg)
 	arg = caster_int(arg);
 	arg->len = get_len_int(arg->nbr);
 	set_flag_int(arg, arg->len);
+	ft_memdel((void**)&(arg)->value);
 	return (arg->len);
 }
 
