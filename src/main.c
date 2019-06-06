@@ -816,20 +816,20 @@ int		main(void)
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%.5o|%-.5o|%#.5o|%0.5o", 0U, 0U, 0U, 0U);
+		mr = ft_printf("%1.i|%-1.i|%+1.i|% 1.i|%01.i", 0, 0, 0, 0, 0);
 		ft_putchar('\n');
-		or = printf("%.5o|%-.5o|%#.5o|%0.5o", 0U, 0U, 0U, 0U);
+		or = printf("%1.i|%-1.i|%+1.i|% 1.i|%01.i", 0, 0, 0, 0, 0);
 		ft_putchar('\n');
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
 
-				mr = ft_printf("%23.5hho|%-23.5hho|%#23.5hho|%023.5hho", ULLONG_MAX, ULLONG_MAX, ULLONG_MAX, ULLONG_MAX);
-				ft_putchar('\n');
-				or = printf("%23.5hho|%-23.5hho|%#23.5hho|%023.5hho", ULLONG_MAX, ULLONG_MAX, ULLONG_MAX, ULLONG_MAX);
-				ft_putchar('\n');
-				ft_putchar('\n');
-				ft_print_result(mr, or, __LINE__);
+		mr = ft_printf("%023.i", 0);
+		ft_putchar('\n');
+		or = printf("%023.i", 0);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
 
 
 

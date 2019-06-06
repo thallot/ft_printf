@@ -42,6 +42,27 @@ void exception_d(t_arg *arg, int *n, int *p)
 	*n -= (arg->plus || arg->space || arg->nbr < 0) ? 1 : 0;
 	if (arg->plus && arg->zero && arg->nbr == 0)
 		*n = *n - 1;
+	if (arg->len == arg->width && !arg->flag_preci)
+		*n = *n - 1;
+	if (arg->len == 1 && arg->width > 1 && !arg->zero)
+		*n = *n - 1;
+	if (arg->width > 1 && arg->flag_preci && arg->nbr == 0)
+		*n = *n + 1;
+	if (arg->type == TYPE_I)
+	{
+		if (arg->len == 1 && arg->flag_preci && arg->width == 1)
+		{
+			if (arg->width > 1 && !arg->plus)
+				*n = *n - 1;
+		}
+		if (arg->len == 1 && arg->flag_preci && arg->width > 1)
+		{
+			if (arg->width > 1 && !arg->plus && arg->zero)
+				*n = *n - 1;
+		}
+	}
+	if (arg->zero && arg->flag_preci)
+		arg->zero = 0;
 	(void)*p;
 }
 
