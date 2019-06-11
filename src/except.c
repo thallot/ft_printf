@@ -6,7 +6,7 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 13:53:39 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 13:59:54 by thallot          ###   ########.fr       */
+/*   Updated: 2019/06/11 14:13:17 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	exception_d(t_arg *arg, int *n, int *p)
 			*n = *n - 1;
 		if (arg->len == 1 && arg->flag_preci && arg->width > 1
 				&& arg->width > 1 && !arg->plus && arg->zero)
-		  *n = *n - 1;
+			*n = *n - 1;
 	}
 	if (arg->zero && arg->flag_preci)
 		arg->zero = 0;
-  if (arg->width && arg->len == 1 && arg->nbr != 0)
-    (*n)++;
+	if (arg->width && arg->len == 1 && arg->nbr != 0)
+		(*n)++;
 	(void)*p;
 }
 
@@ -74,13 +74,15 @@ void	exception_o(t_arg *arg, int *n, int *p)
 	{
 		*n = *n - 1;
 		if ((arg->precision > 0 && arg->flag_preci && arg->len < arg->width)
-			|| (arg->minus && !arg->flag_preci)
-			|| (arg->zero && !arg->flag_preci))
+				|| (arg->minus && !arg->flag_preci)
+				|| (arg->zero && !arg->flag_preci))
 			*n = *n + 1;
 	}
 	if (arg->sharp && arg->width && arg->precision && arg->conv == MODIFIER_HH)
 		*n = *n + 1;
 	if (arg->sharp && arg->precision && arg->conv)
+		*p = *p - 1;
+	if (arg->len - arg->precision == -1 && !arg->width && arg->nbr)
 		*p = *p - 1;
 }
 

@@ -841,9 +841,6 @@ int		main(void)
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%#0.3o\n", 17);
-		or = printf("%#0.3o\n", 17);
-		ft_print_result(mr, or, __LINE__);
 
 		mr = ft_printf("%2.f|%2.1f|%2.2f|%2.5f|%2.12f", 999.99999, 999.99999, 999.99999, 999.99999, 999.99999);
 		ft_putchar('\n');
@@ -856,6 +853,18 @@ int		main(void)
 		or = printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f", 0. / 0., 0. / 0., 0. / 0., 0. / 0., 0. / 0., 0. / 0.);
 		ft_putchar('\n');
 		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%#0.3o\n", 17);
+		or = printf("%#0.3o\n", 17);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%.2o\n", 0);
+		or = printf("%.2o\n", 0);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%-10.5o\n", 2500);
+		or = printf("%-10.5o\n", 2500);
 		ft_print_result(mr, or, __LINE__);
 
 	return (0);
