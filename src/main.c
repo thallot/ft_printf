@@ -867,5 +867,12 @@ int		main(void)
 		or = printf("%-10.5o\n", 2500);
 		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("%15.8f|%-15.8f|%+15.8f|% 15.8f|%#15.8f|%015.8f", -42., -42., -42., -42., -42., -42.);
+		ft_putchar('\n');
+		or = printf("%15.8f|%-15.8f|%+15.8f|% 15.8f|%#15.8f|%015.8f", -42., -42., -42., -42., -42., -42.);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
 	return (0);
 }

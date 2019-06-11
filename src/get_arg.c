@@ -6,7 +6,7 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:27:42 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/16 13:59:09 by thallot          ###   ########.fr       */
+/*   Updated: 2019/06/11 16:21:56 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_arg	*get_arg(const char *str, int *len)
 	*len = 1;
 	if (!(arg = (t_arg *)ft_memalloc(sizeof(t_arg))))
 		return (NULL);
+	get_flag(str, arg, len);
 	arg = get_width(str, arg);
-	arg = get_flag(str, arg, len);
 	arg = get_precision(str, arg);
 	arg = get_type(str, arg, len);
 	arg->len = *len;
@@ -60,7 +60,7 @@ t_arg	*get_width(const char *str, t_arg *arg)
 	return (arg);
 }
 
-t_arg	*get_flag(const char *str, t_arg *arg, int *i)
+void	get_flag(const char *str, t_arg *arg, int *i)
 {
 	while (is_valid_type(str[*i]) == 0 && str[*i])
 	{
@@ -79,16 +79,12 @@ t_arg	*get_flag(const char *str, t_arg *arg, int *i)
 		}
 		else
 		{
-			str[*i] == 'h' ? arg->conv = MODIFIER_H : arg->conv;
-			str[*i] == 'l' ? arg->conv = MODIFIER_L : arg->conv;
-			str[*i] == 'z' ? arg->conv = MODIFIER_Z : arg->conv;
-			str[*i] == 'j' ? arg->conv = MODIFIER_J : arg->conv;
+			get_conv(str, arg, i);
 		}
 		if (!is_valid(str[*i]))
 			break ;
 		*i = *i + 1;
 	}
-	return (arg);
 }
 
 t_arg	*get_type(const char *str, t_arg *arg, int *i)

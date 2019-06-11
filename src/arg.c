@@ -6,11 +6,19 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 15:37:48 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/17 14:22:38 by thallot          ###   ########.fr       */
+/*   Updated: 2019/06/11 16:21:18 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+void	get_conv(const char *str, t_arg *arg, int *i)
+{
+	str[*i] == 'h' ? arg->conv = MODIFIER_H : arg->conv;
+	str[*i] == 'l' ? arg->conv = MODIFIER_L : arg->conv;
+	str[*i] == 'z' ? arg->conv = MODIFIER_Z : arg->conv;
+	str[*i] == 'j' ? arg->conv = MODIFIER_J : arg->conv;
+}
 
 int		ft_print(const char *str, va_list list, int i, int count)
 {

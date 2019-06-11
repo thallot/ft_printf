@@ -6,7 +6,7 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 11:07:09 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/30 16:24:29 by thallot          ###   ########.fr       */
+/*   Updated: 2019/06/11 16:22:21 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define MODIFIER_HH 3
 # define MODIFIER_L 2
 # define MODIFIER_LL 1
+
 /*
 ********************************* Structure ***********************************
 */
@@ -78,7 +79,7 @@ t_arg					*get_arg(const char *str, int *len);
 t_arg					*get_preflag(const char *str, t_arg *arg, int *i);
 t_arg					*get_type(const char *str, t_arg *arg, int *i);
 t_arg					*get_precision(const char *str, t_arg *arg);
-t_arg					*get_flag(const char *str, t_arg *arg, int *i);
+void					get_flag(const char *str, t_arg *arg, int *i);
 /*
 ********************************* Convert.c ***********************************
 */
@@ -93,6 +94,7 @@ int						ft_print(const char *str, va_list list,
 						int i, int count);
 int						ft_print_value(va_list list, t_arg *arg);
 int						ft_get_nb_arg(char *str);
+void					get_conv(const char *str, t_arg *arg, int *i);
 /*
 ********************************* String.c ************************************
 */
@@ -156,7 +158,7 @@ void					ft_putnbr_max(long long int nb);
 void					ft_putnbr_umax(uintmax_t nb);
 int						get_len_int(intmax_t nb);
 int						get_len_uint(uintmax_t nb);
-uintmax_t 		ft_uabs(intmax_t nb);
+uintmax_t				ft_uabs(intmax_t nb);
 /*
 ******************************** Putter.c **************************************
 */
@@ -177,14 +179,15 @@ int						ft_print_float(va_list list, t_arg *arg);
 int						exep_oct(t_arg *arg);
 int						exep_hex(t_arg *arg);
 int						exep_hexx(t_arg *arg);
-int   				exep_int(t_arg *arg);
+int						exep_int(t_arg *arg);
 /*
 ******************************** Float.c **************************************
 */
 int						ft_printf_float(va_list list, t_arg *arg);
 int						set_flag_float(t_arg *arg, int preci,
 						char *intp, char *decip);
-long double  ft_get_float(va_list list, t_arg *arg, char **intp, char **floatp);
+long double				ft_get_float(va_list list, t_arg *arg,
+						char **intp, char **floatp);
 /*
 ******************************** Binary.c *************************************
 */
@@ -195,9 +198,9 @@ char					*ft_uitoa(uintmax_t abs);
 /*
 ******************************** Except.c **************************************
 */
-void 					exception_d(t_arg *arg, int *n, int *p);
-void 					exception_u(t_arg *arg, int *n, int *p);
-void 					exception_f(t_arg *arg, int *n, int *p);
-void 					exception_x(t_arg *arg, int *n, int *p);
-void 					exception_o(t_arg *arg, int *n, int *p);
+void					exception_d(t_arg *arg, int *n, int *p);
+void					exception_u(t_arg *arg, int *n, int *p);
+void					exception_f(t_arg *arg, int *n, int *p);
+void					exception_x(t_arg *arg, int *n, int *p);
+void					exception_o(t_arg *arg, int *n, int *p);
 #endif
