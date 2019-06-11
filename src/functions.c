@@ -6,18 +6,18 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 09:37:16 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/29 11:14:03 by thallot          ###   ########.fr       */
+/*   Updated: 2019/06/11 13:13:54 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-uintmax_t ft_uabs(intmax_t nb)
+uintmax_t		ft_uabs(intmax_t nb)
 {
 	return (nb > 0 ? nb : -nb);
 }
 
-int			get_len_int(intmax_t nb)
+int				get_len_int(intmax_t nb)
 {
 	int			len;
 	intmax_t	n;
@@ -44,7 +44,7 @@ int			get_len_int(intmax_t nb)
 	return (len);
 }
 
-int			get_len_uint(uintmax_t nb)
+int				get_len_uint(uintmax_t nb)
 {
 	int			len;
 
@@ -63,7 +63,7 @@ int			get_len_uint(uintmax_t nb)
 	return (len);
 }
 
-void		ft_putnbr_max(long long int nb)
+void			ft_putnbr_max(long long int nb)
 {
 	uintmax_t z;
 
@@ -86,7 +86,7 @@ void		ft_putnbr_max(long long int nb)
 	ft_putchar((z % 10) + 48);
 }
 
-void		ft_putnbr_umax(uintmax_t nb)
+void			ft_putnbr_umax(uintmax_t nb)
 {
 	uintmax_t z;
 

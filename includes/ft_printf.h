@@ -184,12 +184,20 @@ int   				exep_int(t_arg *arg);
 int						ft_printf_float(va_list list, t_arg *arg);
 int						set_flag_float(t_arg *arg, int preci,
 						char *intp, char *decip);
+long double  ft_get_float(va_list list, t_arg *arg, char **intp, char **floatp);
 /*
 ******************************** Binary.c *************************************
 */
 int						ft_print_binary(va_list list, t_arg *arg);
 int						ft_print_i(va_list list, t_arg *arg);
 int						ft_print_base(va_list list, t_arg *arg);
-
 char					*ft_uitoa(uintmax_t abs);
+/*
+******************************** Except.c **************************************
+*/
+void 					exception_d(t_arg *arg, int *n, int *p);
+void 					exception_u(t_arg *arg, int *n, int *p);
+void 					exception_f(t_arg *arg, int *n, int *p);
+void 					exception_x(t_arg *arg, int *n, int *p);
+void 					exception_o(t_arg *arg, int *n, int *p);
 #endif

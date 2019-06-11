@@ -6,7 +6,7 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 11:10:19 by thallot           #+#    #+#             */
-/*   Updated: 2019/05/13 11:27:25 by thallot          ###   ########.fr       */
+/*   Updated: 2019/06/11 13:12:57 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int		is_flag(char c)
 int		is_valid(char c)
 {
 	if (is_flag(c) || is_valid_type(c) || ft_isdigit(c)
-		|| is_valid_precision(c) || c == 'h' || c == 'l' || c == 'z' || c == 'j')
+		|| is_valid_precision(c) || c == 'h' || c == 'l'
+		|| c == 'z' || c == 'j')
 		return (1);
 	return (0);
 }

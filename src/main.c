@@ -729,10 +729,6 @@ int		main(void)
 		or = printf("%ld\n", LONG_MIN);
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%#0.3o\n", 17);
-		or = printf("%#0.3o\n", 17);
-		ft_print_result(mr, or, __LINE__);
-
 		mr = ft_printf("{%+03d}\n", 0);
 		or = printf("{%+03d}\n", 0);
 		ft_print_result(mr, or, __LINE__);
@@ -824,14 +820,43 @@ int		main(void)
 		ft_print_result(mr, or, __LINE__);
 
 
-		mr = ft_printf("%023.i", 0);
+		mr = ft_printf("%.f|%-.f|%+.f|% .f|%#.f|%0.f", 0., 0., 0., 0., 0., 0.);
 		ft_putchar('\n');
-		or = printf("%023.i", 0);
+		or = printf("%.f|%-.f|%+.f|% .f|%#.f|%0.f", 0., 0., 0., 0., 0., 0.);
 		ft_putchar('\n');
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("%f|%-f|%+f|% f|%#f|%0f", 0., 0., 0., 0., 0., 0.);
+		ft_putchar('\n');
+		or = printf("%f|%-f|%+f|% f|%#f|%0f", 0., 0., 0., 0., 0., 0.);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f", 0., 0., 0., 0., 0., 0.);
+		ft_putchar('\n');
+		or = printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f", 0., 0., 0., 0., 0., 0.);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%#0.3o\n", 17);
+		or = printf("%#0.3o\n", 17);
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%2.f|%2.1f|%2.2f|%2.5f|%2.12f", 999.99999, 999.99999, 999.99999, 999.99999, 999.99999);
+		ft_putchar('\n');
+		or = printf("%2.f|%2.1f|%2.2f|%2.5f|%2.12f", 999.99999, 999.99999, 999.99999, 999.99999, 999.99999);
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f", 0. / 0., 0. / 0., 0. / 0., 0. / 0., 0. / 0., 0. / 0.);
+		ft_putchar('\n');
+		or = printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f", 0. / 0., 0. / 0., 0. / 0., 0. / 0., 0. / 0., 0. / 0.);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
 
 	return (0);
 }

@@ -36,8 +36,7 @@ void	set_flag_int(t_arg *arg, int len)
 		ft_put_all('0', &max, &i);
 	if (!(arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0))
 		ft_putstr(arg->value);
-	else
-		i--;
+	arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0 ? i-- : i;
 	ft_put_all(' ', &max, &i);
 	arg->len = len == 0 ? i + 1 : i + len;
 }

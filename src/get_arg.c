@@ -67,7 +67,7 @@ t_arg	*get_flag(const char *str, t_arg *arg, int *i)
 		str[*i] == '-' ? arg->minus = 1 : arg->minus;
 		str[*i] == '+' ? arg->plus = 1 : arg->plus;
 		str[*i] == '#' ? arg->sharp = 1 : arg->sharp;
-		if (str[*i] == '0' && ft_isdigit(str[*i - 1]) == 0 && str[*i - 1] != '.')
+		if (str[*i] == '0' && !ft_isdigit(str[*i - 1]) && str[*i - 1] != '.')
 			arg->zero = 1;
 		str[*i] == ' ' ? arg->space = 1 : arg->space;
 		str[*i] == '.' ? arg->flag_preci = 1 : arg->flag_preci;
@@ -84,8 +84,6 @@ t_arg	*get_flag(const char *str, t_arg *arg, int *i)
 			str[*i] == 'z' ? arg->conv = MODIFIER_Z : arg->conv;
 			str[*i] == 'j' ? arg->conv = MODIFIER_J : arg->conv;
 		}
-		if (is_valid(str[*i]) == 0)
-			break ;
 		*i = *i + 1;
 	}
 	return (arg);
