@@ -18,7 +18,7 @@
 # include <limits.h>
 # include <inttypes.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include "libft.h"
 # define BUFFER_SIZE 1024
 # define TYPE_BB 12
 # define TYPE_I 11

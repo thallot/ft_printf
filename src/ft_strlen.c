@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/02 11:11:21 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/02 14:35:57 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include <string.h>
 
-void		free_arg(t_arg *arg)
+size_t	ft_strlen(const char *s)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	size_t i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

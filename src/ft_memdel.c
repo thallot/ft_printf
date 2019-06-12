@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/04 09:15:37 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/08 13:25:39 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include <stdlib.h>
 
-void		free_arg(t_arg *arg)
+void	ft_memdel(void **ap)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	if (ap && *ap)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
 }

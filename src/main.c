@@ -757,8 +757,8 @@ int		main(void)
 		or = printf("ORIG>\t% #9.0p\n", 482);
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("% p|%+p\n", 42, 42);
-		or = printf("% p|%+p\n", 42, 42);
+		mr = ft_printf("% p|%+p\n", 442);
+		or = printf("% p|%+p\n", 442);
 		ft_print_result(mr, or, __LINE__);
 
 
@@ -873,6 +873,90 @@ int		main(void)
 		ft_putchar('\n');
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
+
+		int		nb;
+		nb = 45;
+		mr = ft_printf("test o:%o\n", nb);
+		printf("1 %d\n", mr);
+		mr = ft_printf("hash:%#o\n", nb);
+		printf("2 %d\n", mr);
+		mr = ft_printf("precision / grande:%.5o\n", nb);
+		printf("3 %d\n", mr);
+		mr = ft_printf("precision / petite:%.0o\n", nb);
+		printf("4 %d\n", mr);
+		mr = ft_printf("Prec + hash / grande:%#.5o\n", nb);
+		printf("5 %d\n", mr);
+		mr = ft_printf("Prec + hash / petite:%#.1o\n", nb);
+		printf("6 %d\n", mr);
+		mr = ft_printf("Prec + 0:%0.5o\n", nb);
+		printf("7 %d\n", mr);
+		mr = ft_printf("Prec + minus:%-.5o\n", nb);
+		printf("8 %d\n", mr);
+		mr = ft_printf("Size:%5o\n", nb);
+		printf("9 %d\n", mr);
+		mr = ft_printf("size + prec:%7.3o\n", nb);
+		printf("10 %d\n", mr);
+		mr = ft_printf("size + minus:%-5o\n", nb);
+		printf("11 %d\n", mr);
+		mr = ft_printf("size + zero:%05o\n", nb);
+		printf("12 %d\n", mr);
+		mr = ft_printf("size + zero + hash:%#05o\n", nb);
+		printf("13 %d\n", mr);
+		mr = ft_printf("size + zero + prec:%05.3o\n", nb);
+		printf("14 %d\n", mr);
+		mr = ft_printf("size + minus + prec:%-5.3o\n", nb);
+		printf("15 %d\n", mr);
+		mr = ft_printf("size + hash + zero + prec:%#05.3o\n", nb);
+		printf("16 %d\n", mr);
+		mr = ft_printf("size + hash + zero + prec:%0#5.3o\n", nb);
+		printf("17 %d\n", mr);
+		mr = ft_printf("size + hash + minus + prec:%-#7.3o\n", nb);
+		printf("18 %d\n", mr);
+
+printf("\n\n");
+		mr = printf("test o:%o\n", nb);
+		printf("1 %d\n", mr);
+		mr = printf("hash:%#o\n", nb);
+		printf("2 %d\n", mr);
+		mr = printf("precision / grande:%.5o\n", nb);
+		printf("3 %d\n", mr);
+		mr = printf("precision / petite:%.0o\n", nb);
+		printf("4 %d\n", mr);
+		mr = printf("Prec + hash / grande:%#.5o\n", nb);
+		printf("5 %d\n", mr);
+		mr = printf("Prec + hash / petite:%#.1o\n", nb);
+		printf("6 %d\n", mr);
+		mr = printf("Prec + 0:%0.5o\n", nb);
+		printf("7 %d\n", mr);
+		mr = printf("Prec + minus:%-.5o\n", nb);
+		printf("8 %d\n", mr);
+		mr = printf("Size:%5o\n", nb);
+		printf("9 %d\n", mr);
+		mr = printf("size + prec:%7.3o\n", nb);
+		printf("10 %d\n", mr);
+		mr = printf("size + minus:%-5o\n", nb);
+		printf("11 %d\n", mr);
+		mr = printf("size + zero:%05o\n", nb);
+		printf("12 %d\n", mr);
+		mr = printf("size + zero + hash:%#05o\n", nb);
+		printf("13 %d\n", mr);
+		mr = printf("size + zero + prec:%05.3o\n", nb);
+		printf("14 %d\n", mr);
+		mr = printf("size + minus + prec:%-5.3o\n", nb);
+		printf("15 %d\n", mr);
+		mr = printf("size + hash + zero + prec:%#05.3o\n", nb);
+		printf("16 %d\n", mr);
+		mr = printf("size + hash + zero + prec:%0#5.3o\n", nb);
+		printf("17 %d\n", mr);
+		mr = printf("size + hash + minus + prec:%-#7.3o\n", nb);
+		printf("18 %d\n", mr);
+
+		mr = ft_printf("%1.5o|%-1.5o|%#1.5o|%01.5o", 0U, 0U, 0U, 0U);
+		ft_putchar('\n');
+		or = printf("%1.5o|%-1.5o|%#1.5o|%01.5o", 0U, 0U, 0U, 0U);
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
 
 	return (0);
 }

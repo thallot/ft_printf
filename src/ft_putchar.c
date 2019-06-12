@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/08 09:44:59 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/08 13:27:00 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include <unistd.h>
 
-void		free_arg(t_arg *arg)
+void	ft_putchar(char c)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	write(1, &c, 1);
 }

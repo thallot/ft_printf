@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/03 17:56:48 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/08 13:21:27 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
+#include <stdlib.h>
 
-void		free_arg(t_arg *arg)
+void	*ft_memalloc(size_t size)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	char *ptr;
+
+	if (!(ptr = (char *)malloc(sizeof(*ptr) * size)))
+		return (NULL);
+	ft_bzero(ptr, size);
+	return (ptr);
 }

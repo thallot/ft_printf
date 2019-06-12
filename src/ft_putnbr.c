@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/08 09:45:33 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/18 14:17:14 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-void		free_arg(t_arg *arg)
+void	ft_putnbr(int i)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	unsigned int z;
+
+	if (i < 0)
+	{
+		ft_putchar('-');
+		z = -i;
+	}
+	else
+		z = i;
+	if (z >= 10)
+		ft_putnbr(z / 10);
+	ft_putchar((z % 10) + 48);
 }

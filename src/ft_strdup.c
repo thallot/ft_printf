@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/01 15:33:52 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/15 17:38:51 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include <stdlib.h>
 
-void		free_arg(t_arg *arg)
+char	*ft_strdup(const char *s1)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	int		i;
+	char	*dest;
+
+	i = 0;
+	while (s1[i] != '\0')
+		i++;
+	if (!(dest = (char *)malloc(sizeof(*dest) * i + 1)))
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

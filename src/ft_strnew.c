@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/04 09:20:11 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/04 11:08:09 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-void		free_arg(t_arg *arg)
+char	*ft_strnew(size_t size)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	char *str;
+
+	if (!(str = ft_memalloc(size + 1)))
+		return (NULL);
+	ft_bzero(str, size + 1);
+	return (str);
 }

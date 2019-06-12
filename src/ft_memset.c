@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/02 09:41:32 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/08 13:26:47 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include <string.h>
 
-void		free_arg(t_arg *arg)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	unsigned char *str_cpy;
+
+	str_cpy = b;
+	while (len)
+	{
+		*str_cpy = c;
+		str_cpy++;
+		len--;
+	}
+	return (b);
 }

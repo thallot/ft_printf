@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/04 12:04:16 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/04 12:12:59 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-void		free_arg(t_arg *arg)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	char *str;
+
+	str = NULL;
+	if (s)
+	{
+		str = ft_strnew(len);
+		if (!str)
+			return (NULL);
+		str = ft_strncpy(str, s + start, len);
+	}
+	return (str);
 }

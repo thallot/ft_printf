@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/13 15:55:40 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:39:43 by thallot          ###   ########.fr       */
+/*   Created: 2019/04/03 10:34:39 by thallot           #+#    #+#             */
+/*   Updated: 2019/04/03 13:25:49 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-void		free_arg(t_arg *arg)
+char	*ft_strchr(const char *s, int c)
 {
-	ft_memdel((void **)&arg);
-	return ;
+	size_t	i;
+	char	*str;
+	char	*ptr;
+	size_t	len;
+
+	i = 0;
+	str = (char *)s;
+	len = ft_strlen(str);
+	ptr = NULL;
+	while (i < len + 1 && ptr == NULL)
+	{
+		if (str[i] == (char)c)
+			ptr = (char *)s + i;
+		i++;
+	}
+	return (ptr);
 }
