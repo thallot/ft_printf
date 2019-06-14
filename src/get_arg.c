@@ -24,6 +24,8 @@ t_arg	*get_arg(const char *str, int *len)
 	arg = get_precision(str, arg);
 	arg = get_type(str, arg, len);
 	arg->len = *len;
+	if (arg->zero && arg->sharp && arg->plus && arg->minus)
+		arg->all = 1;
 	if (arg->zero && arg->minus
 		&& (arg->type != TYPE_D || arg->type == TYPE_I))
 		arg->zero = 0;
@@ -101,7 +103,7 @@ t_arg	*get_type(const char *str, t_arg *arg, int *i)
 	str[*i] == 'p' ? arg->type = TYPE_P : arg->type;
 	str[*i] == 'f' ? arg->type = TYPE_F : arg->type;
 	str[*i] == 'b' ? arg->type = TYPE_B : arg->type;
-	str[*i] == 'B' ? arg->type = TYPE_BB : arg->type;
+	str[*i] == 'W' ? arg->type = TYPE_BB : arg->type;
 	str[*i] == '%' ? arg->type = TYPE_PERCENT : arg->type;
 	*i = *i + 1;
 	return (arg);

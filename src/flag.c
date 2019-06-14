@@ -45,7 +45,7 @@ int		is_valid(char c)
 {
 	if (is_flag(c) || is_valid_type(c) || ft_isdigit(c)
 		|| is_valid_precision(c) || c == 'h' || c == 'l'
-		|| c == 'z' || c == 'j')
+		|| c == 'z' || c == 'j' || c == 'L')
 		return (1);
 	return (0);
 }

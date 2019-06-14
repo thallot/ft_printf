@@ -48,7 +48,10 @@ long double	ft_get_float(va_list list, t_arg *arg, char **intp, char **floatp)
 
 	k = 1;
 	arg->precision = arg->flag_preci == 1 ? arg->precision : 6;
-	nbr = va_arg(list, double);
+	if (arg->conv == MODIFIER_LF)
+		nbr = va_arg(list, long double);
+	else
+		nbr = (double)va_arg(list, double);
 	arg->sign = nbr < 0 ? 1 : 0;
 	nbr = nbr < 0 ? -nbr : nbr;
 	if (arg->precision == 0 && (nbr - (signed long int)nbr) >= 0.5)

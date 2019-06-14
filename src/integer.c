@@ -37,7 +37,7 @@ void	set_flag_int(t_arg *arg, int len)
 	if (!(arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0))
 		ft_putstr(arg->value);
 	arg->nbr == 0 && arg->flag_preci == 1 && arg->precision == 0 ? i-- : i;
-	ft_put_all(' ', &max, &i);
+	max > 0 ? ft_put_all(' ', &max, &i) : 0;
 	arg->len = len == 0 ? i + 1 : i + len;
 }
 
@@ -60,9 +60,7 @@ void	set_flag_uint(t_arg *arg, int len)
 		ft_putstr(arg->value);
 	else
 		i--;
-	if (arg->minus && arg->plus)
-		i = ft_put(' ', i);
-	ft_put_all(' ', &max, &i);
+	max > 0 ? ft_put_all(' ', &max, &i) : 0;
 	len == 0 ? len = 1 : len;
 	arg->len = i + len;
 }
@@ -87,7 +85,7 @@ void	set_flag_oct(t_arg *arg, int len)
 		ft_putstr(arg->value);
 	else
 		i--;
-	ft_put_all(' ', &max, &i);
+	max > 0 ? ft_put_all(' ', &max, &i) : 0;
 	arg->len = len == 0 ? i + 1 : i + len;
 }
 
@@ -103,10 +101,6 @@ void	set_flag_hex(t_arg *arg, int len)
 		ft_put_all(' ', &max, &i);
 	if ((arg->sharp == 1 && arg->nbr != 0))
 		i = ft_putter("0x", i);
-	else if (arg->plus)
-		i = ft_put('+', i);
-	else if (arg->space)
-		i = ft_put(' ', i);
 	if (arg->precision)
 		ft_put_all('0', &p, &i);
 	else if (!arg->minus && arg->zero)
@@ -132,10 +126,6 @@ void	set_flag_hexx(t_arg *arg, int len)
 		ft_put_all(' ', &max, &i);
 	if (arg->sharp == 1 && arg->nbr != 0)
 		i = ft_putter("0X", i);
-	else if (arg->plus)
-		i = ft_put('+', i);
-	else if (arg->space)
-		i = ft_put(' ', i);
 	if (arg->precision)
 		ft_put_all('0', &p, &i);
 	else if (!arg->minus && arg->zero)
@@ -144,7 +134,7 @@ void	set_flag_hexx(t_arg *arg, int len)
 		ft_putstr(arg->value);
 	else
 		i--;
-	ft_put_all(' ', &max, &i);
+	max > 0 ? ft_put_all(' ', &max, &i) : 0;
 	arg->len = len == 0 ? i + 1 : i + len;
 	ft_memdel((void **)&(arg)->value);
 }

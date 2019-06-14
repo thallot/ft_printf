@@ -18,6 +18,7 @@ void	get_conv(const char *str, t_arg *arg, int *i)
 	str[*i] == 'l' ? arg->conv = MODIFIER_L : arg->conv;
 	str[*i] == 'z' ? arg->conv = MODIFIER_Z : arg->conv;
 	str[*i] == 'j' ? arg->conv = MODIFIER_J : arg->conv;
+	str[*i] == 'L' ? arg->conv = MODIFIER_LF : arg->conv;
 }
 
 int		ft_print(const char *str, va_list list, int i, int count)

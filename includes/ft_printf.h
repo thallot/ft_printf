@@ -33,6 +33,7 @@
 # define TYPE_O 2
 # define TYPE_F 1
 # define TYPE_B 0
+# define MODIFIER_LF 6
 # define MODIFIER_J 6
 # define MODIFIER_Z 5
 # define MODIFIER_H 4
@@ -56,6 +57,7 @@ typedef struct			s_arg
 	int				flag_preci;
 	int				flag;
 	int				sign;
+	int				all;
 	long long int	precision;
 	int				error;
 	long long int	width;

@@ -38,6 +38,12 @@ void	exception_d(t_arg *arg, int *n, int *p)
 		arg->zero = 0;
 	if (arg->width && arg->len == 1 && arg->nbr != 0)
 		(*n)++;
+	if (arg->all && arg->nbr && arg->len == 1)
+		(*n)--;
+	if (arg->zero && arg->len == 1 && arg->nbr)
+		*n = *n - 1;
+	if (arg->all && arg->nbr && arg->len == 1)
+		*n = *n + 1;
 	(void)*p;
 }
 
@@ -53,8 +59,12 @@ void	exception_u(t_arg *arg, int *n, int *p)
 		*n = *n - 1;
 	if (arg->len == 1 && arg->width > 1 && !arg->flag_preci && arg->zero)
 		*n = *n + 1;
-	if (arg->plus && arg->minus && arg->width)
+	if (arg->plus && arg->minus && arg->nbr && arg->len == 1)
+		*n = *n + 1;
+	if (arg->width > 1 && arg->zero && !arg->nbr && arg->width > 1 && arg->plus)
 		*n = *n - 1;
+	if (arg->width > 1 && arg->nbr && !arg->flag && arg->len == 1)
+		*n = *n + 1;
 	(void)*p;
 }
 
@@ -84,6 +94,10 @@ void	exception_o(t_arg *arg, int *n, int *p)
 		*n = *n + 1;
 	if (arg->sharp && arg->precision && !arg->width && arg->nbr && !arg->conv)
 		*p = *p - 1;
+	if (arg->sharp && arg->width && arg->plus && arg->minus)
+		*p = *p - 1;
+	if (arg->plus && arg->minus && arg->nbr && arg->len == 1)
+		*n = *n + 1;
 }
 
 void	exception_x(t_arg *arg, int *n, int *p)
@@ -103,6 +117,10 @@ void	exception_x(t_arg *arg, int *n, int *p)
 		*n = *n - 1;
 	if (arg->len == 1 && arg->width > 1 && !arg->flag_preci && arg->zero)
 		*n = *n + 1;
+	if (arg->plus && arg->minus && arg->nbr && arg->len == 1)
+		*n = *n + 1;
+	if (arg->width > 1 && arg->zero && !arg->nbr && arg->width > 1 && arg->plus)
+		*n = *n - 1;
 	(void)*p;
 }
 
