@@ -206,11 +206,12 @@ char					*ft_uitoa(uintmax_t abs);
 /*
 ******************************** Except.c **************************************
 */
-void					exception_d(t_arg *arg, int *n, int *p);
+void					exception_d(t_arg *arg, int *n);
 void					exception_u(t_arg *arg, int *n, int *p);
 void					exception_f(t_arg *arg, int *n, int *p);
 void					exception_x(t_arg *arg, int *n, int *p);
 void					exception_o(t_arg *arg, int *n, int *p);
+void					exception_o2(t_arg *arg, int *n, int *p);
 /*
 ******************************** Except.c **************************************
 */

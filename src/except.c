@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void	exception_d(t_arg *arg, int *n, int *p)
+void	exception_d(t_arg *arg, int *n)
 {
 	*n -= (arg->plus || arg->space || arg->nbr < 0) ? 1 : 0;
 	*n -= (arg->plus && arg->zero && arg->nbr == 0) ? 1 : 0;
@@ -33,19 +33,12 @@ void	exception_d(t_arg *arg, int *n, int *p)
 				&& arg->nbr && !arg->space && arg->zero)
 		{
 			*n = *n + 1;
-		if ((arg->conv == MODIFIER_HH || arg->conv == MODIFIER_H) && arg->len == 1 && arg->zero && arg->plus)
-			*n = *n - 1;
+			if ((arg->conv == MODIFIER_HH || arg->conv == MODIFIER_H)
+					&& arg->len == 1 && arg->zero && arg->plus)
+				*n = *n - 1;
 		}
 	}
 	arg->zero = (arg->zero && arg->flag_preci) ? 0 : arg->zero;
-	*n += (arg->width && arg->len == 1 && arg->nbr != 0) ? 1 : 0;
-	*n -= (arg->all && arg->nbr && arg->len == 1) ? 1 : 0;
-	*n -= (arg->zero && arg->len == 1 && arg->nbr) ? 1 : 0;
-	*n += (arg->all && arg->nbr && arg->len == 1) ? 1 : 0;
-	if (arg->conv && arg->width > arg->len && !arg->precision
-			&& arg->nbr && !arg->space && arg->zero)
-		*n = *n + 1;
-	(void)*p;
 }
 
 void	exception_u(t_arg *arg, int *n, int *p)
@@ -94,26 +87,6 @@ void	exception_o(t_arg *arg, int *n, int *p)
 	if (arg->width && arg->sharp && arg->nbr == 0
 		&& !arg->flag_preci && !arg->minus && !arg->zero)
 		*n = *n + 1;
-	if (arg->width > 1 && arg->zero
-			&& !arg->nbr && arg->width > 1 && arg->plus)
-		*n = *n - 1;
-	if (!arg->flag && arg->width > 1 && arg->nbr
-			&& arg->len == 1 && !arg->flag_preci)
-		*n = *n + 1;
-	*p -= (arg->sharp && arg->precision && arg->conv) ? 1 : 0;
-	if (arg->sharp && arg->width && arg->precision && arg->conv == MODIFIER_HH)
-		*n = *n + 1;
-	if (arg->sharp && arg->width && arg->precision && arg->conv && !arg->nbr)
-		*p = *p + 1;
-	if (arg->sharp && arg->width && arg->precision && arg->conv && !arg->nbr)
-		*p = *p + 1;
-	if (arg->sharp && arg->precision && !arg->width && arg->nbr && !arg->conv)
-		*p = *p - 1;
-	*p -= (arg->sharp && arg->width && arg->plus && arg->minus) ? 1 : 0;
-	*n += (arg->plus && arg->minus && arg->nbr && arg->len == 1) ? 1 : 0;
-	*p += (arg->precision && !arg->nbr && !arg->width && arg->conv) ? 1 : 0;
-	*p -= (arg->precision && !arg->nbr && !arg->width && arg->conv && !arg->flag) ? 1 : 0;
-	*p -= (arg->precision && !arg->nbr && arg->sharp && arg->conv && arg->width) ? 1 : 0;
 }
 
 void	exception_x(t_arg *arg, int *n, int *p)
