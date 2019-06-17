@@ -37,8 +37,10 @@ int			ft_putter(char *c, int i)
 
 void		set_exception(t_arg *arg, int *n, int *p)
 {
-	exception_d(arg, n, p);
-	exception_u(arg, n, p);
+	if (arg->type == TYPE_D || arg->type == TYPE_I)
+		exception_d(arg, n, p);
+	if (arg->type == TYPE_U)
+		exception_u(arg, n, p);
 	if (arg->type == TYPE_O)
 	{
 		exception_o(arg, n, p);
@@ -60,8 +62,10 @@ void		set_exception(t_arg *arg, int *n, int *p)
 				&& arg->len == 1 && !arg->flag_preci)
 			*n = *n + 1;
 	}
-	exception_x(arg, n, p);
-	exception_f(arg, n, p);
+	if (arg->type == TYPE_X || arg->type == TYPE_XX)
+		exception_x(arg, n, p);
+	if (arg->type == TYPE_F)
+		exception_f(arg, n, p);
 }
 
 int			set_offset(int *len, t_arg *arg, intmax_t nb, int *p)

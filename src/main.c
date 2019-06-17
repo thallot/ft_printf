@@ -901,13 +901,6 @@ int		main(void)
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%.f|%.1f|%.2f|%.5f|%.12f", 0.99, 0.99, 0.99, 0.99, 0.99);
-		ft_putchar('\n');
-		or = printf("%.f|%.1f|%.2f|%.5f|%.12f", 0.99, 0.99, 0.99, 0.99, 0.99);
-		ft_putchar('\n');
-		ft_putchar('\n');
-		ft_print_result(mr, or, __LINE__);
-
 		mr = ft_printf("%0+46.30hhi", -1277780477);
 		ft_putchar('\n');
 		or = printf("%0+46.30hhi", -1277780477);
@@ -930,34 +923,41 @@ int		main(void)
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%#14hhx", 1673570568);
+		mr = ft_printf("%055lld", -1021179435);
 		ft_putchar('\n');
-		or = printf("%#14hhx", 1673570568);
-		ft_putchar('\n');
-		ft_putchar('\n');
-		ft_print_result(mr, or, __LINE__);
-
-		mr = ft_printf("%#42hhx", -1155199477);
-		ft_putchar('\n');
-		or = printf("%#42hhx", -1155199477);
+		or = printf("%055lld", -1021179435);
 		ft_putchar('\n');
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%#50hhx", 833890052);
+		mr = ft_printf("^.^/%038.24hhi^.^/", -1425917688);
 		ft_putchar('\n');
-		or = printf("%#50hhx", 833890052);
-		ft_putchar('\n');
-		ft_putchar('\n');
-		ft_print_result(mr, or, __LINE__);
-
-		mr = ft_printf("%#055hhx", -601311228);
-		ft_putchar('\n');
-		or = printf("%#055hhx", -601311228);
+		or = printf("^.^/%038.24hhi^.^/", -1425917688);
 		ft_putchar('\n');
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("%-+23.li|%- 23.li|%-023.li|%+ 23.li|%+023.li|% 023.li|%-+ 023.li", LLONG_MIN, LLONG_MIN, LLONG_MIN, LLONG_MIN, LLONG_MIN, LLONG_MIN, LLONG_MIN);
+		ft_putchar('\n');
+		or = printf("%-+23.li|%- 23.li|%-023.li|%+ 23.li|%+023.li|% 023.li|%-+ 023.li", LLONG_MIN, LLONG_MIN, LLONG_MIN, LLONG_MIN, LLONG_MIN, LLONG_MIN, LLONG_MIN);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%#.2llo", 0);
+		ft_putchar('\n');
+		or = printf("%#.2llo", 0);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+
+		mr = ft_printf("%23.5ho|%-23.5ho|%#23.5ho|%023.5ho", ULLONG_MAX, ULLONG_MAX, ULLONG_MAX, ULLONG_MAX);
+		ft_putchar('\n');
+		or = printf("%23.5ho|%-23.5ho|%#23.5ho|%023.5ho", ULLONG_MAX, ULLONG_MAX, ULLONG_MAX, ULLONG_MAX);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
 
 	return (0);
 }
