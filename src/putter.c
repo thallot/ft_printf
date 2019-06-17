@@ -53,8 +53,8 @@ void		set_exception(t_arg *arg, int *n, int *p)
 		if (arg->width && arg->sharp && arg->nbr == 0
 			&& !arg->flag_preci && !arg->minus && !arg->zero)
 			*n = *n + 1;
-		if (arg->width > 1 && arg->zero && !arg->nbr
-				&& arg->width > 1 && arg->plus)
+		if (arg->width > 1 && arg->zero
+				&& !arg->nbr && arg->width > 1 && arg->plus)
 			*n = *n - 1;
 		if (!arg->flag && arg->width > 1 && arg->nbr
 				&& arg->len == 1 && !arg->flag_preci)
@@ -62,7 +62,6 @@ void		set_exception(t_arg *arg, int *n, int *p)
 	}
 	exception_x(arg, n, p);
 	exception_f(arg, n, p);
-	*n += (arg->nbr == 0 && arg->zero && arg->width && !arg->plus) ? 1 : 0;
 }
 
 int			set_offset(int *len, t_arg *arg, intmax_t nb, int *p)
@@ -75,6 +74,7 @@ int			set_offset(int *len, t_arg *arg, intmax_t nb, int *p)
 	*len = (nb == 0 && arg->precision == 0) ? 0 : *len;
 	n = arg->width - *len - *p;
 	set_exception(arg, &n, p);
+	n -= (arg->nbr == 0 && arg->zero && arg->width && !arg->plus) ? 1 : 0;
 	n = n < 0 ? 0 : n;
 	*p = *p < 0 ? 0 : *p;
 	return (n);
