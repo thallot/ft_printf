@@ -952,9 +952,9 @@ int		main(void)
 		ft_print_result(mr, or, __LINE__);
 
 
-		mr = ft_printf("!%#2.2llo!", 0);
+		mr = ft_printf("%-#23.5hho|%-023.5hho|%#023.5hho|%-#023.5hho", ULLONG_MAX, ULLONG_MAX, ULLONG_MAX, ULLONG_MAX);
 		ft_putchar('\n');
-		or = printf("!%#2.2llo!", 0);
+		or = printf("%-#23.5hho|%-023.5hho|%#023.5hho|%-#023.5hho", ULLONG_MAX, ULLONG_MAX, ULLONG_MAX, ULLONG_MAX);
 		ft_putchar('\n');
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);

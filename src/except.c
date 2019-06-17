@@ -55,7 +55,8 @@ void	exception_u(t_arg *arg, int *n, int *p)
 		*n = *n + 1;
 	if (arg->width > 1 && arg->zero && !arg->nbr && arg->width > 1 && arg->plus)
 		*n = *n - 1;
-	if (arg->width > 1 && arg->nbr && !arg->flag && arg->len == 1)
+	if (arg->width > 1 && arg->nbr && !arg->flag
+			&& arg->len == 1 && !arg->precision)
 		*n = *n + 1;
 	(void)*p;
 }
