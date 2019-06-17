@@ -35,34 +35,34 @@ int			ft_putter(char *c, int i)
 	return (i);
 }
 
-int			set_exception(t_arg *arg, int n, int *p)
+void		set_exception(t_arg *arg, int *n, int *p)
 {
-	exception_d(arg, &n, p);
-	exception_u(arg, &n, p);
+	exception_d(arg, n, p);
+	exception_u(arg, n, p);
 	if (arg->type == TYPE_O)
 	{
-		exception_o(arg, &n, p);
+		exception_o(arg, n, p);
 		if (arg->len - arg->precision == -1 && !arg->width && arg->nbr)
 			*p = *p - 1;
 		if (arg->width && arg->precision && arg->sharp
 				&& *p > 0 && !arg->conv && arg->nbr)
 		{
 			*p = *p - 1;
-			n = n + 1;
+			*n = *n + 1;
 		}
 		if (arg->width && arg->sharp && arg->nbr == 0
 			&& !arg->flag_preci && !arg->minus && !arg->zero)
-			n = n + 1;
-		if (arg->width > 1 && arg->zero && !arg->nbr && arg->width > 1 && arg->plus)
-			n = n - 1;
-		if (!arg->flag && arg->width > 1 && arg->nbr && arg->len == 1 && !arg->flag_preci)
-			n++;
+			*n = *n + 1;
+		if (arg->width > 1 && arg->zero && !arg->nbr
+				&& arg->width > 1 && arg->plus)
+			*n = *n - 1;
+		if (!arg->flag && arg->width > 1 && arg->nbr
+				&& arg->len == 1 && !arg->flag_preci)
+			*n = *n + 1;
 	}
-	exception_x(arg, &n, p);
-	exception_f(arg, &n, p);
-	if (arg->nbr == 0 && arg->zero && arg->width && !arg->plus)
-		n--;
-	return (n);
+	exception_x(arg, n, p);
+	exception_f(arg, n, p);
+	*n += (arg->nbr == 0 && arg->zero && arg->width && !arg->plus) ? 1 : 0;
 }
 
 int			set_offset(int *len, t_arg *arg, intmax_t nb, int *p)
@@ -74,7 +74,7 @@ int			set_offset(int *len, t_arg *arg, intmax_t nb, int *p)
 	*p = (arg->precision > *len) ? arg->precision - *len : 0;
 	*len = (nb == 0 && arg->precision == 0) ? 0 : *len;
 	n = arg->width - *len - *p;
-	n = set_exception(arg, n, p);
+	set_exception(arg, &n, p);
 	n = n < 0 ? 0 : n;
 	*p = *p < 0 ? 0 : *p;
 	return (n);

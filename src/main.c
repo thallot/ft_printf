@@ -745,10 +745,6 @@ int		main(void)
 		or = printf("{%0-3d}\n", 0);
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("{%8B}\n", 42);
-		or = printf("{%o}\n", 42);
-		ft_print_result(mr, or, __LINE__);
-
 		mr = ft_printf("MINE>\t[%018.4p]\n", NULL);
 		or = printf("ORIG>\t[%018.4p]\n", NULL);
 		ft_print_result(mr, or, __LINE__);
@@ -777,12 +773,12 @@ int		main(void)
 		or = printf("%+ .3f\n", -0);
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%+ .3f\n", -7.6988);
-		or = printf("%+ .3f\n", -7.6988);
+		mr = ft_printf("%+ .2f\n", -7.6988);
+		or = printf("%+ .2f\n", -7.6988);
 		ft_print_result(mr, or, __LINE__);
 
-		mr = ft_printf("%#-+11 .3f\n", -7.6988);
-		or = printf("%#-+11 .3f\n", -7.6988);
+		mr = ft_printf("%#-+11 .1f\n", -7.6988);
+		or = printf("%#-+11 .1f\n", -7.6988);
 		ft_print_result(mr, or, __LINE__);
 
 		mr = ft_printf("%#-+3 .3f\n", -7.6988);
@@ -891,6 +887,26 @@ int		main(void)
 		ft_putchar('\n');
 		ft_print_result(mr, or, __LINE__);
 
+		mr = ft_printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f", -0., -0.,-0., -0., -0., -0.);
+		ft_putchar('\n');
+		or = printf("%5f|%-5f|%+5f|% 5f|%#5f|%05f", -0., -0., -0., -0., -0., -0.);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%f", 0.0/0.0);
+		ft_putchar('\n');
+		or = printf("%f", 0.0/0.0);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
+
+		mr = ft_printf("%.f|%.1f|%.2f|%.5f|%.12f", 0.99, 0.99, 0.99, 0.99, 0.99);
+		ft_putchar('\n');
+		or = printf("%.f|%.1f|%.2f|%.5f|%.12f", 0.99, 0.99, 0.99, 0.99, 0.99);
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_print_result(mr, or, __LINE__);
 
 
 	return (0);

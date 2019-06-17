@@ -24,8 +24,7 @@ t_arg	*get_arg(const char *str, int *len)
 	arg = get_precision(str, arg);
 	arg = get_type(str, arg, len);
 	arg->len = *len;
-	if (arg->zero && arg->sharp && arg->plus && arg->minus)
-		arg->all = 1;
+	arg->all = (arg->zero && arg->sharp && arg->plus && arg->minus) ? 1 : 0;
 	if (arg->zero && arg->minus
 		&& (arg->type != TYPE_D || arg->type == TYPE_I))
 		arg->zero = 0;

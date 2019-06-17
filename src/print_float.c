@@ -52,7 +52,7 @@ long double	ft_get_float(va_list list, t_arg *arg, char **intp, char **floatp)
 		nbr = va_arg(list, long double);
 	else
 		nbr = (double)va_arg(list, double);
-	arg->sign = nbr < 0 ? 1 : 0;
+	ftobinary(nbr, arg, 0);
 	nbr = nbr < 0 ? -nbr : nbr;
 	if (arg->precision == 0 && (nbr - (signed long int)nbr) >= 0.5)
 		nbr += 0.5;
@@ -79,15 +79,14 @@ int			ft_print_float(va_list list, t_arg *arg)
 	nbr = ft_get_float(list, arg, &intp, &floatp);
 	while (ft_strlen(floatp) < (size_t)arg->precision)
 		floatp = ft_joinc(floatp, '0');
-	if (!ft_isdigit(intp[0]) && nbr != 0)
+	if (arg->sign == 2)
 	{
-		arg->sign = 2;
-		ft_memdel((void**)&intp);
-		intp = ft_strdup("nan");
-		ft_memdel((void**)&floatp);
-		arg->precision = 0;
+		arg->value = ft_strdup("nan");
+		arg->len = 3;
+		set_flag_str(arg, arg->len);
 	}
-	arg->len = set_flag_float(arg, arg->precision, intp, floatp);
+	else
+		arg->len = set_flag_float(arg, arg->precision, intp, floatp);
 	ft_memdel((void**)&intp);
 	ft_memdel((void**)&floatp);
 	ft_memdel((void**)&(arg)->value);

@@ -27,6 +27,7 @@ SOURCES = ft_printf.c \
 			exception.c \
 			except.c \
 			itoa.c \
+			float.c \
 			\
 			ft_isdigit.c \
 			ft_itoa.c \

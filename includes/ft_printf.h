@@ -6,7 +6,7 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 11:07:09 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 16:22:21 by thallot          ###   ########.fr       */
+/*   Updated: 2019/06/17 10:45:35 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ typedef struct			s_arg
 	long long int	nbr;
 	long long int	len;
 }						t_arg;
+
+union					u_decimal{
+	float		f;
+	uint32_t	u;
+}						u_decimal;
 /*
 ********************************** Flag.c * ***********************************
 */
@@ -161,6 +166,7 @@ void					ft_putnbr_umax(uintmax_t nb);
 int						get_len_int(intmax_t nb);
 int						get_len_uint(uintmax_t nb);
 uintmax_t				ft_uabs(intmax_t nb);
+float					ft_powf(float nb, int pow);
 /*
 ******************************** Putter.c **************************************
 */
@@ -168,7 +174,7 @@ int						set_offset(int *len, t_arg *arg, intmax_t num, int *p);
 int						ft_put(char c, int i);
 void					ft_put_all(char c, int *n, int *i);
 int						ft_putter(char *c, int i);
-int						set_exception(t_arg *arg, int n, int *p);
+void					set_exception(t_arg *arg, int *n, int *p);
 /*
 ******************************** Print_Pointer.c *******************************
 */
@@ -205,4 +211,10 @@ void					exception_u(t_arg *arg, int *n, int *p);
 void					exception_f(t_arg *arg, int *n, int *p);
 void					exception_x(t_arg *arg, int *n, int *p);
 void					exception_o(t_arg *arg, int *n, int *p);
+/*
+******************************** Except.c **************************************
+*/
+int						binary_int(char *str);
+void					binary_deci(char *str, int nbr);
+void					ftobinary(float f, t_arg *arg, int i);
 #endif
