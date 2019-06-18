@@ -63,31 +63,33 @@ void	exception_u(t_arg *arg, int *n, int *p)
 
 void	exception_o(t_arg *arg, int *n, int *p)
 {
-	*n -= ((arg->len == arg->width) || (arg->sharp && arg->nbr != 0)) ? 1 : 0;
+	if ((arg->sharp && arg->nbr) || (arg->sharp && arg->flag_preci))
+		*n = *n - 1;
+	if (!arg->flag && arg->width && !arg->flag_preci
+			&& arg->len == 1 && arg->nbr)
+		*n = *n + 1;
+	if (arg->len == arg->width)
+		*n = *n - 1;
 	if (arg->len == 1 && arg->width == 1 && arg->flag_preci && !arg->precision)
 		*n = *n + 1;
-	*n -= (arg->len == 1 && arg->width > 1 && !arg->flag_preci) ? 1 : 0;
+	if (arg->len == 1 && arg->width > 1 && !arg->flag_preci)
+		*n = *n - 1;
 	if (arg->len == 1 && arg->width > 1 && !arg->flag_preci && arg->zero)
 		*n = *n + 1;
-	if (arg->sharp && arg->flag_preci && arg->len == 1 && !arg->precision)
-		arg->sign = 1;
-	if (arg->sharp && arg->len == 1 && arg->width)
-	{
+	if (arg->plus && arg->minus && arg->nbr && arg->len == 1)
+		*n = *n + 1;
+	if (arg->width > 1 && arg->zero && !arg->nbr && arg->width > 1 && arg->plus)
 		*n = *n - 1;
-		if ((arg->precision > 0 && arg->flag_preci && arg->len < arg->width)
-				|| (arg->minus && !arg->flag_preci)
-				|| (arg->zero && !arg->flag_preci))
-			*n = *n + 1;
-	}
-	if (arg->width && arg->precision && arg->sharp
-			&& *p > 0 && !arg->conv && arg->nbr)
-	{
+	if (arg->width && arg->conv && arg->sharp
+			&& arg->len == 1 && !arg->precision && arg->nbr && !arg->zero)
+		*n = *n + 1;
+	if (arg->sharp && arg->precision > arg->len && arg->nbr)
 		*p = *p - 1;
+	if (arg->sharp && arg->precision > arg->len && arg->width)
 		*n = *n + 1;
-	}
-	if (arg->width && arg->sharp && arg->nbr == 0
-		&& !arg->flag_preci && !arg->minus && !arg->zero)
+	if (arg->sharp && arg->precision == 1 && arg->width && !arg->nbr)
 		*n = *n + 1;
+	(void)*p;
 }
 
 void	exception_x(t_arg *arg, int *n, int *p)

@@ -51,10 +51,7 @@ void		set_exception(t_arg *arg, int *n, int *p)
 	if (arg->type == TYPE_U)
 		exception_u(arg, n, p);
 	if (arg->type == TYPE_O)
-	{
 		exception_o(arg, n, p);
-		exception_o2(arg, n, p);
-	}
 	if (arg->type == TYPE_X || arg->type == TYPE_XX)
 		exception_x(arg, n, p);
 	if (arg->type == TYPE_F)
@@ -67,6 +64,7 @@ int			set_offset(int *len, t_arg *arg, intmax_t nb, int *p)
 
 	if (arg->type == TYPE_D || arg->type == TYPE_I)
 		*len -= (nb < 0) ? 1 : 0;
+	arg->plus = arg->type == TYPE_O ? 0 : arg->plus;
 	*p = (arg->precision > *len) ? arg->precision - *len : 0;
 	*len = (nb == 0 && arg->precision == 0) ? 0 : *len;
 	n = arg->width - *len - *p;
