@@ -47,11 +47,15 @@ void		set_exception(t_arg *arg, int *n, int *p)
 		if (arg->conv && arg->width > arg->len && !arg->precision
 				&& arg->nbr && !arg->space && arg->zero)
 			*n = *n + 1;
+		*n -= (arg->precision == 1 && arg->width == 1) ? 1 : 0;
 	}
 	if (arg->type == TYPE_U)
 		exception_u(arg, n, p);
 	if (arg->type == TYPE_O)
+	{
 		exception_o(arg, n, p);
+		exception_o2(arg, n, p);
+	}
 	if (arg->type == TYPE_X || arg->type == TYPE_XX)
 		exception_x(arg, n, p);
 	if (arg->type == TYPE_F)

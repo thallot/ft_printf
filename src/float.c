@@ -38,7 +38,6 @@ void	ftobinary(float f, t_arg *arg, int i)
 	while (integer[i] && integer[i++] == '1')
 		k++;
 	arg->sign = k == 8 ? 2 : arg->sign;
-	binary_deci(deci, binary_int(integer));
 }
 
 int		binary_int(char *str)

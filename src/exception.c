@@ -55,3 +55,23 @@ int		exep_int(t_arg *arg)
 	}
 	return (0);
 }
+
+void	exception_o2(t_arg *arg, int *n, int *p)
+{
+	if (arg->width && arg->conv && arg->sharp
+			&& arg->len == 1 && !arg->precision && arg->nbr && !arg->zero)
+		*n = *n + 1;
+	if (arg->sharp && arg->precision > arg->len && arg->nbr)
+		*p = *p - 1;
+	if (arg->sharp && arg->precision > arg->len && arg->width)
+		*n = *n + 1;
+	if (arg->sharp && arg->precision == 1 && arg->width && !arg->nbr)
+		*n = *n + 1;
+	if (arg->sharp && arg->width && arg->nbr && arg->len == 1
+		&& !arg->flag_preci && !arg->conv)
+		*n = *n + 1;
+	if (arg->minus && !arg->sharp && arg->width && arg->nbr && arg->len == 1
+		&& !arg->flag_preci && !arg->conv)
+		*n = *n + 1;
+	(void)*p;
+}

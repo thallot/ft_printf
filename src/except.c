@@ -6,7 +6,7 @@
 /*   By: thallot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 13:53:39 by thallot           #+#    #+#             */
-/*   Updated: 2019/06/11 14:13:17 by thallot          ###   ########.fr       */
+/*   Updated: 2019/06/18 12:34:38 by thallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,6 @@ void	exception_o(t_arg *arg, int *n, int *p)
 		*n = *n + 1;
 	if (arg->width > 1 && arg->zero && !arg->nbr && arg->width > 1 && arg->plus)
 		*n = *n - 1;
-	if (arg->width && arg->conv && arg->sharp
-			&& arg->len == 1 && !arg->precision && arg->nbr && !arg->zero)
-		*n = *n + 1;
-	if (arg->sharp && arg->precision > arg->len && arg->nbr)
-		*p = *p - 1;
-	if (arg->sharp && arg->precision > arg->len && arg->width)
-		*n = *n + 1;
-	if (arg->sharp && arg->precision == 1 && arg->width && !arg->nbr)
-		*n = *n + 1;
 	(void)*p;
 }
 

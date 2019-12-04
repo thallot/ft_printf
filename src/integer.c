@@ -75,10 +75,9 @@ void	set_flag_oct(t_arg *arg, int len)
 	max = set_offset(&len, arg, arg->nbr, &p);
 	if (!arg->minus && (arg->precision || !arg->zero))
 		ft_put_all(' ', &max, &i);
-	if ((arg->sharp && arg->nbr != 0) || (arg->sharp && arg->flag_preci && !arg->precision))
-	{
+	if ((arg->sharp && arg->nbr != 0)
+			|| (arg->sharp && arg->flag_preci && !arg->precision))
 		i = ft_put('0', i);
-	}
 	if (arg->precision)
 		ft_put_all('0', &p, &i);
 	else if (!arg->minus && arg->zero)

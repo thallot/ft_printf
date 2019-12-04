@@ -72,7 +72,6 @@ int		ft_print_oct(va_list list, t_arg *arg)
 {
 	arg->nbr = convert_arg(arg, list);
 	arg = caster_int(arg);
-	arg->plus = 0;
 	if (!exep_oct(arg))
 	{
 		if (arg->conv == MODIFIER_LL || arg->conv == MODIFIER_J)

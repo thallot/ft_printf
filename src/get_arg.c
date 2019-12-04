@@ -26,7 +26,7 @@ t_arg	*get_arg(const char *str, int *len)
 	arg->len = *len;
 	arg->all = (arg->zero && arg->sharp && arg->plus && arg->minus) ? 1 : 0;
 	if (arg->zero && arg->minus
-		&& (arg->type != TYPE_D || arg->type == TYPE_I))
+		&& (arg->type != TYPE_D || arg->type != TYPE_I))
 		arg->zero = 0;
 	if ((arg->zero == 1 && arg->flag_preci == 1)
 		&& (arg->type == TYPE_D || arg->type == TYPE_U
